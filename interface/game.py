@@ -28,7 +28,7 @@ def game():
     names = get_names()
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
     cm = init_CM()
-    shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
+    shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar. Unless it is necessary You are to answer in max 2/3 sentences."
     cm.add_system_prompt(shakespear)
 
 

@@ -57,8 +57,8 @@ class CM:
         for output in stream:
             if not 'content' in output['choices'][0]['delta']:
                 continue
-            if output['choices'][0]['delta']['content'] == "\n":
-                continue
+            # if output['choices'][0]['delta']['content'] == "\n":
+            #     continue
 
             token = output['choices'][0]['delta']['content']
             result += token

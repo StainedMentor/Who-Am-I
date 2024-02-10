@@ -1,5 +1,5 @@
 [
-  {"name":"Elon Musk", "mbti":"INTJ" },
+  {"name":"Elon Musk", "mbti":"INTJ", "prompt":"hi"},
   {"name":"Bill Gates" , "mbti":"INTP" },
   {"name":"William Shakespeare" , "mbti":"INFP" },
   {"name":"Daenerys Targaryen" , "mbti":"INFJ" },
