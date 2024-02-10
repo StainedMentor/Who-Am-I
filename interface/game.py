@@ -45,9 +45,9 @@ with st.sidebar:
 
 
 
-col1, col2, col3 = st.columns([1.5,1, 0.8], gap="medium")
+chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
 
-with col1:
+with chat:
     with st.container(border=True):
         st.write(
         f'<div style="text-align: center; margin-bottom: 20px; font-size: 24px;'
@@ -70,11 +70,11 @@ with col1:
             # st.experimental_rerun()
 
 
-with col2:
+with bots:
     with st.container(border=True, height=500):
         st.image("assets/temp.png", use_column_width=True)
 
-with col3:
+with guesses:
     with st.container(border=True, height=500):
         options = []
         for bot in range(BOTS):
