@@ -1,7 +1,6 @@
 import utilis
 import streamlit as st
-import json
-import random
+import pandas as pd
 
 
 st.set_page_config(page_title= "Who am I?", layout="wide")
@@ -12,13 +11,11 @@ def bots_num():
 
 @st.cache_data
 def get_names():
-    with open("data.json", "r") as file:
-        data = json.load(file)
+    data = pd.read_json("data.json")
+    data = pd.DataFrame(data)
 
-    random_names = random.sample(data, BOTS)
-    names = []
-    for item in random_names:
-        names.append(item['name'])
+    names = data['name'].sample(n=4)
+
     return names
 
 BOTS = bots_num()
