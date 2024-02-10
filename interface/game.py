@@ -2,95 +2,71 @@ import utilis
 import streamlit as st
 import pandas as pd
 
+def game():
+    @st.cache_data
+    def bots_num():
+        return 4
 
-st.set_page_config(page_title= "Who am I?", layout="wide")
+    @st.cache_data
+    def get_names():
+        data = pd.read_json("data.json")
+        data = pd.DataFrame(data)
 
-@st.cache_data
-def bots_num():
-    return 4
+        names = data['name'].sample(n=4)
 
-@st.cache_data
-def get_names():
-    data = pd.read_json("data.json")
-    data = pd.DataFrame(data)
+        return names
 
-    names = data['name'].sample(n=4)
+    BOTS = bots_num()
+    ACTIVE_BOT = 1
 
-    return names
+    # getting data
+    names = get_names()
+    chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
 
-BOTS = bots_num()
-ACTIVE_BOT = 1
-#page 1
+    with chat:
+        with st.container(border=True):
+            st.write(
+            f'<div style="text-align: center; margin-bottom: 20px; font-size: 24px;'
+            f'">Choose your fighter</div>',
+            unsafe_allow_html=True)
 
-utilis.add_logo()
-# utilis.remove_space()
+            columns = st.columns(BOTS)
 
-#getting data
-names = get_names()
-
-
-with st.sidebar:
-    utilis.margin_top(40)
-    st.image("assets/scientist.png", use_column_width=True)
-    utilis.margin_bottom(30)
-
-    if st.button("Get help from Professor", type="secondary", use_container_width=True):
-        pass
-    if st.button("Start again your research", type="secondary", use_container_width=True):
-        pass
-
-    if st.button("Settings", type="secondary", use_container_width=True):
-        pass
+            for i in range(len(columns)):
+                with columns[i]:
+                    if st.button(f"Bot {i+1}", type="secondary",key=i, use_container_width=True):
+                        ACTIVE_BOT = i+1
 
 
+            messages = st.container(height=300, border=True)
+
+            if prompt := st.chat_input(placeholder="Your message"):
+                messages.chat_message("user").write(prompt)
+                messages.chat_message("assistant").write(f"Echo: {prompt}")
+                # st.experimental_rerun()
 
 
-chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
+    with bots:
+        with st.container(border=True, height=500):
+            st.image("assets/temp.png", use_column_width=True)
 
-with chat:
-    with st.container(border=True):
-        st.write(
-        f'<div style="text-align: center; margin-bottom: 20px; font-size: 24px;'
-        f'">Choose your fighter</div>',
-        unsafe_allow_html=True)
+    with guesses:
+        with st.container(border=True, height=500):
+            options = []
+            for bot in range(BOTS):
+                option = st.selectbox(
+                    f"Bot {bot+1}",
+                    (names),
+                    index=None,
+                    placeholder="Am I...",
+                    key = f"bot{bot+1}")
 
-        columns = st.columns(BOTS)
+                if 'option' not in st.session_state:
+                    st.session_state.selected_option = option
 
-        for i in range(len(columns)):
-            with columns[i]:
-                if st.button(f"Bot {i+1}", type="secondary",key=i, use_container_width=True):
-                    ACTIVE_BOT = i+1
-
-
-        messages = st.container(height=300, border=True)
-
-        if prompt := st.chat_input(placeholder="Your message"):
-            messages.chat_message("user").write(prompt)
-            messages.chat_message("assistant").write(f"Echo: {prompt}")
-            # st.experimental_rerun()
-
-
-with bots:
-    with st.container(border=True, height=500):
-        st.image("assets/temp.png", use_column_width=True)
-
-with guesses:
-    with st.container(border=True, height=500):
-        options = []
-        for bot in range(BOTS):
-            option = st.selectbox(
-                f"Bot {bot+1}",
-                (names),
-                index=None,
-                placeholder="Am I...",
-                key = f"bot{bot+1}")
-
-            if 'option' not in st.session_state:
-                st.session_state.selected_option = option
-
-            options.append(option)
-            print(option)
-    if st.button("Finish research", type="secondary", use_container_width=True):
-        pass
+                options.append(option)
+                print(option)
+        if st.button("Finish research", type="secondary", use_container_width=True):
+            pass
 
 
