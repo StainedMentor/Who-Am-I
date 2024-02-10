@@ -9,13 +9,13 @@ def game():
         return 4
 
     @st.cache_data
-    def get_names():
+    def get_types():
         data = pd.read_json("data.json")
         data = pd.DataFrame(data)
 
-        names = data['name'].sample(n=4)
+        types = data['mbti'].sample(n=4)
 
-        return names
+        return types
 
     @st.cache_resource
     def init_CM():
@@ -25,7 +25,7 @@ def game():
     ACTIVE_BOT = 1
 
     # getting data
-    names = get_names()
+    types = get_types()
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
     cm = init_CM()
     shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar. Unless it is necessary You are to answer in max 2/3 sentences."
@@ -73,7 +73,7 @@ def game():
             for bot in range(BOTS):
                 option = st.selectbox(
                     f"Bot {bot+1}",
-                    (names),
+                    (types),
                     index=None,
                     placeholder="Am I...",
                     key = f"bot{bot+1}")
