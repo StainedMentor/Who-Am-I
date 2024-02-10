@@ -5,6 +5,9 @@ st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state=
 utilis.add_logo()
 utilis.remove_space()
 
+if 'game' not in st.session_state:
+    st.session_state.game = False
+
 def start():
     with st.container(border=True,height=600):
         if st.button("Start", type="secondary"):
@@ -24,7 +27,7 @@ with st.sidebar:
     b2 = st.button("Start again your research", type="secondary", use_container_width=True)
     b3 = st.button("Settings", type="secondary", use_container_width=True)
 
-if b0:game.game()
+if b0 or st.session_state.game:game.game()
 elif b1:help.help()
 elif b2:start()
 elif b3: pass

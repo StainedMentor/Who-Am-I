@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 from ChatManager.ChatManager import CM
 def game():
+    st.session_state.game = True
     @st.cache_data
     def bots_num():
         return 4
