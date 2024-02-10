@@ -1,7 +1,11 @@
 
-from LlamaGenerator import Llama_cpp_generator
+# from LlamaGenerator import Llama_cpp_generator
 from copy import deepcopy
-class ChatManager:
+
+from ChatManager.LlamaGenerator import Llama_cpp_generator
+
+
+class CM:
     def __init__(self, n_people=4):
         self.n_people = n_people
         self.chats = [[] for _ in range(n_people)]

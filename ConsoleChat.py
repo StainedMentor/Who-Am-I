@@ -1,11 +1,11 @@
 import sys
 
-from ChatManager import ChatManager
+from interface.ChatManager.ChatManager import CM
 
 shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
 
 
-CM = ChatManager()
+CM = CM()
 prompt = ""
 
 # adding system prompts

@@ -5,7 +5,7 @@ from llama_cpp import Llama
 class Llama_cpp_generator:
     # llama-2-7b-chat-Q4_K_M will be the default model used in the project. It's both effective and resource friendly.
     # ctx_length describes the number of tokens in the generation process h
-    def __init__(self, ctx_length=2048, m_path="./llama-2-7b-chat.Q4_K_M.gguf", n_gpu_layers=1000):
+    def __init__(self, ctx_length=4096, m_path="./llama-2-7b-chat.Q4_K_M.gguf", n_gpu_layers=1000):
         self.ctx_length = ctx_length
         self.black_list = []
         self.base_prompt = ""

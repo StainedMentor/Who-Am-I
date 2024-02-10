@@ -1,7 +1,7 @@
 import utilis
 import streamlit as st
 import pandas as pd
-
+from ChatManager.ChatManager import CM
 def game():
     @st.cache_data
     def bots_num():
@@ -16,12 +16,20 @@ def game():
 
         return names
 
+    @st.cache_resource
+    def init_CM():
+        return CM()
+
     BOTS = bots_num()
     ACTIVE_BOT = 1
 
     # getting data
     names = get_names()
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
+    cm = init_CM()
+    shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
+    cm.add_system_prompt(shakespear)
+
 
     with chat:
         with st.container(border=True):
@@ -39,10 +47,18 @@ def game():
 
 
             messages = st.container(height=300, border=True)
+            for message in cm.chats[cm.selected_p]:
+                with messages.chat_message(message["role"]):
+                    st.write(message["content"])
 
             if prompt := st.chat_input(placeholder="Your message"):
                 messages.chat_message("user").write(prompt)
-                messages.chat_message("assistant").write(f"Echo: {prompt}")
+                cm.add_user_message(prompt)
+                stream = cm.get_response_stream()
+                # !!!!!!IMPORTANT!!!!!! Dont delete this print it doesnt work without this !!!!!!IMPORTANT!!!!!!
+                print(cm.chats)
+                with messages.chat_message("assistant"):
+                    st.write_stream(stream)
                 # st.experimental_rerun()
 
 
