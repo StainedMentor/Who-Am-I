@@ -9,7 +9,7 @@ class Llama_cpp_generator:
         self.ctx_length = ctx_length
         self.black_list = []
         self.base_prompt = ""
-        self.LLM = Llama(model_path=m_path, n_ctx=ctx_length)
+        self.LLM = Llama(model_path=m_path, n_ctx=ctx_length, n_batch=52)
 
     # returns a single response object from the LLM
     def get_response(self, chat):
