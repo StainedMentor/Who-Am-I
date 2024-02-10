@@ -1,14 +1,17 @@
-import importlib
 import streamlit as st
 import utilis, game, help
 
-st.set_page_config(page_title="Who am I?", layout="wide")
+st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
 utilis.add_logo()
+utilis.remove_space()
 
 def start():
-    with st.container(border=True):
-        st.write("start")
+    with st.container(border=True,height=600):
+        if st.button("Start", type="secondary"):
+            st.image("assets/scientist.png", width=350)
 
+            messages = st.container(height=140, border=True)
+            # messages.write_stream()
 
 with st.sidebar:
     utilis.margin_top(40)

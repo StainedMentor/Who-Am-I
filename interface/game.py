@@ -65,7 +65,6 @@ def game():
                     st.session_state.selected_option = option
 
                 options.append(option)
-                print(option)
         if st.button("Finish research", type="secondary", use_container_width=True):
             pass
 
