@@ -12,9 +12,23 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 ### Installation
 After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf?download=true
 
-After installing requirements, change the config file in  ~/.streamlit/config.toml. directory.
+After installing requirements, change the config file in  `~/.streamlit/config.toml.` directory.
 
-### Run in console instructions
+On mac everything should work out of the box. If you are working on windows llama-cpp-python installs a CPU only version, which is extremely slow for this project. You can reinstall this package with the following command to use hardware acceleration:
+```
+CMAKE_ARGS="-DLLAMA_CUBLAS=on"  pip install llama-cpp-python --upgrade --force-reinstall --no-cache-dir
+```
+If there are further issues this guide should fix them. https://medium.com/@piyushbatra1999/installing-llama-cpp-python-with-nvidia-gpu-acceleration-on-windows-a-short-guide-0dfac475002d
+
+### Run graphical interface
+After finishing the installation run in the projects directory this command:
+```
+streamlit run interface/app.py
+```
+This should open autmatically in your browser. If not it would display a link in the console
+### Run in console instructions 
+Note this has wrong import paths due to streamlit and would need to be changed in order to run
+
 After installing run **ConsoleChat.py**.
 This will start the backend and allow you to chat with 4 "different" bots.
 To switch between bots simply type an integer from 0 to 3. (Ommit any other charecters to switch)
