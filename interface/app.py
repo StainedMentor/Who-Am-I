@@ -9,27 +9,49 @@ utilis.remove_space()
 if 'window' not in st.session_state:
     st.session_state.window = ""
 
+if "start" not in st.session_state:
+    st.session_state.start = False
+
+if "text" not in st.session_state:
+    st.session_state.text = 4
+
+
+
 def start():
-
-    @st.cache_data
-    def text_num(idx=0):
-        return idx
-
-    idx = text_num()
-
     with st.container(border=True,height=600):
+        img, start_b, lvls_b = st.columns([1, 0.9, 1])
 
-        if st.button("Start", type="secondary"):
-            st.image("assets/scientist.png", width=350)
-            messages = st.container(height=140, border=True)
-            messages.write_stream(utilis.stream_data(idx))
-            # idx = text_num(idx+1)
-            if st.button("→", type="secondary"):
-                idx +=1
-                # st.button("Start", type="secondary") = True
-                messages.write_stream(utilis.stream_data(idx))
+        #nie wiem czemu tak ma byc ale wtedy dziala
+        if not st.session_state.start:
+            st.session_state.start = True
+            if start_b.button("Start", type="secondary", use_container_width=True):
+                pass
 
-def mange():
+        elif st.session_state.start:
+            utilis.margin_top(40)
+            img.image("assets/scientist.png", width=350)
+            utilis.margin_top(30)
+            messages = st.container(height=150, border=True)
+            messages.write_stream(utilis.stream_data(st.session_state.text))
+            st.session_state.text += 1
+
+            if st.session_state.text > 5:
+                if lvls_b.button("Easy", type="secondary", use_container_width=True):
+                    pass
+                elif lvls_b.button("Medium", type="secondary", use_container_width=True):
+                    pass
+                elif lvls_b.button("Hard", type="secondary", use_container_width=True):
+                    pass
+
+            if messages.button("→", type="secondary"):
+                messages.empty()
+
+
+
+
+
+
+def manage():
     if st.session_state.window == "game": game.game()
     elif st.session_state.window == "help": help.help()
     elif st.session_state.window == "start": start()
@@ -50,7 +72,6 @@ elif b1:
     st.session_state.window = "help"
 elif b2:
     st.session_state.window = "start"
-# elif b3: pass
-# else:start()
-mange()
+
+manage()
 
