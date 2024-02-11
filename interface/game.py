@@ -30,6 +30,9 @@ def game():
     cm = init_CM()
     shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
     cm.add_system_prompt(shakespear)
+    cm.add_system_prompt(shakespear)
+    cm.add_system_prompt(shakespear)
+    cm.add_system_prompt(shakespear)
 
 
     with chat:
@@ -44,7 +47,8 @@ def game():
             for i in range(len(columns)):
                 with columns[i]:
                     if st.button(f"Bot {i+1}", type="secondary",key=i, use_container_width=True):
-                        ACTIVE_BOT = i+1
+                        ACTIVE_BOT = i
+                        cm.switch_p(ACTIVE_BOT)
 
 
             messages = st.container(height=300, border=True)
