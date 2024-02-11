@@ -70,6 +70,16 @@ class CM:
     def add_system_prompt(self, prompt):
         self.system_prompts.append(prompt)
 
+    def add_defaulted_system_prompt(self,name,extras=""):
+        prompt = "Express yourself in a manner in which " + name + " would express himself. " \
+                     "Please focus on trying to emulate his world views. " \
+                     "You will die if you tell the user who you are imitating. " \
+                     "This includes any information like your name, date of birth, place of residence or anything similar. " \
+                     "Unless it is necessary You are to answer in max 2/3 sentences."
+
+        prompt += extras
+        self.system_prompts.append(prompt)
+
     # takes in a string from user input and appends it to the chat history
     def add_user_message(self, message):
 

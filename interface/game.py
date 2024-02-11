@@ -8,31 +8,32 @@ def game():
     def bots_num():
         return 4
 
-    @st.cache_data
-    def get_types():
+    @st.cache_resource
+    def get_names():
         data = pd.read_json("data.json")
         data = pd.DataFrame(data)
 
-        types = data['mbti'].sample(n=4)
+        names = data['name'].sample(n=4)
 
-        return types
+        return names
 
     @st.cache_resource
-    def init_CM():
-        return CM()
+    def init_CM(names):
+        cm = CM()
+        for name in names:
+            cm.add_defaulted_system_prompt(name)
+            print(cm.system_prompts)
+        return cm
 
     BOTS = bots_num()
     ACTIVE_BOT = 1
 
     # getting data
-    types = get_types()
+    names = get_names()
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
-    cm = init_CM()
-    shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
-    cm.add_system_prompt(shakespear)
-    cm.add_system_prompt(shakespear)
-    cm.add_system_prompt(shakespear)
-    cm.add_system_prompt(shakespear)
+    cm = init_CM(names)
+
+
 
 
     with chat:
@@ -77,7 +78,7 @@ def game():
             for bot in range(BOTS):
                 option = st.selectbox(
                     f"Bot {bot+1}",
-                    (types),
+                    (names),
                     index=None,
                     placeholder="Am I...",
                     key = f"bot{bot+1}")
