@@ -13,10 +13,10 @@ if "start" not in st.session_state:
     st.session_state.start = False
 
 if "text" not in st.session_state:
-    st.session_state.text = 21
+    st.session_state.text = 0
 
 if "lvl" not in st.session_state:
-    st.session_state.lvl = 1
+    st.session_state.lvl = 0
 
 if "research" not in st.session_state:
     st.session_state.research = False

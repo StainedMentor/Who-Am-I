@@ -42,7 +42,7 @@ def game():
 
     @st.cache_resource
     def init_CM(names):
-        cm = CM()
+        cm = CM(n_people=len(names))
         for name in names:
             cm.add_defaulted_system_prompt(name)
             print(names)
@@ -116,7 +116,7 @@ def game():
                 print(option)
 
                 if 'selected_option' not in st.session_state:
-                    temp = [None,None,None,None]
+                    temp = [None]*BOTS
                     st.session_state.selected_option = temp
 
                 if not option is None:
