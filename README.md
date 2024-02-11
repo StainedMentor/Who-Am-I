@@ -16,7 +16,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * On the right column there are X selcectboxes with a list of couple MBTI types.
 * User can talk to each bot by selecting specific button on the top of the left column. Bots mimic certain celebrity, they can not tell user who they are.
 * User chooses predicted MBTI type for each bot on the right column selectboxes.
-* After clicking "Finish research" button, user gets his resukts in %.\
+* After clicking "Finish research" button, user gets his results in %.\
   \
 ![game](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/game.png)
   
@@ -30,7 +30,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * I: Introversion - This dimension represents how individuals interact with the world. Introverts tend to be more reserved, reflective, and energized by time spent alone or in small groups.
 * S: Sensing - This dimension represents how individuals process information. Sensing individuals tend to focus on concrete details, facts, and information gathered through their five senses.
 * F: Feeling - This dimension represents how individuals make decisions. Feelers tend to prioritize empathy, harmony, and the impact on others when making decisions.
-* P: Perceiving - This dimension represents how individuals approach structure and organization. Perceiving individuals prefer a flexible and spontaneous lifestyle, with a focus on adaptability and openness to new experiences \
+* P: Perceiving - This dimension represents how individuals approach structure and organization. Perceiving individuals prefer a flexible and spontaneous lifestyle, with a focus on adaptability and openness to new experiences 
 
 ## Installation
 After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf?download=true
