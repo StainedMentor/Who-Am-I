@@ -4,6 +4,7 @@
 * [The Game](#the-game)
 * [Installation](#installation)
 * [Run graphical interface](#run-graphical-interface)
+* [Run in console instructions](#run-in-console-instructions)
   
 ## Description
 Who Am I is a game about scientist assistant journey in a robots' lab. The journey begins with a short story and selecting difficulty level, then all 16 MBTI types are introduced to us with hort description. Next, the game begins. We (scientist assistants) must match all bots to MBTI personalities. We do our research with talking to each bot, getting to know them, asking questions which may lead to personality traits connected to pecific MBTI type. The research is done when we match all bots with avaible MBTI types, then results from the scientist come.\
@@ -55,7 +56,7 @@ After finishing the installation run in the projects directory this command:
 streamlit run interface/app.py
 ```
 This should open autmatically in your browser. If not it would display a link in the console
-### Run in console instructions 
+## Run in console instructions 
 Note this has wrong import paths due to streamlit and would need to be changed in order to run
 
 After installing run **ConsoleChat.py**.
