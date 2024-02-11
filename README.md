@@ -1,13 +1,13 @@
 # Who-Am-I
-### Description
+## Description
 Who Am I is a game about scientist assistant journey in a robots' lab. The journey begins with a short story and selecting difficulty level, then all 16 MBTI types are introduced to us with hort description. Next, the game begins. We (scientist assistants) must match all bots to MBTI personalities. We do our research with talking to each bot, getting to know them, asking questions which may lead to personality traits connected to pecific MBTI type. The research is done when we match all bots with avaible MBTI types, then results from the scientist come.
 
-### The game
-#### Start
+## The game
+### Start
 * User is introduced to the plot and MBTI types.
 * User can select one of 3 difficulty levels, each defines number of bots in gamplay - easy = 4, medium = 5, hard = 6.\
 ![start](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/select.png)
-#### Game
+### Game
 * User can use sidebar window to choose page -> game, help, start, settings. Game is a page for gameplay, help contains short notes about MBTI types, start restarts the game and settings manipulates options in the game.
 * On the left column there is a chat for each of X bots.
 * On the center column there is a representation of our game show.
@@ -17,11 +17,11 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * After clicking "Finish research" button, user gets his resukts in %.\
 ![game](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/game.png)
 
-#### Help
+### Help
 ![help](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/help.png)
   
 
-### Installation
+## Installation
 After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf?download=true
 
 After installing requirements, change the config file in  `~/.streamlit/config.toml.` directory.
@@ -32,7 +32,7 @@ CMAKE_ARGS="-DLLAMA_CUBLAS=on"  pip install llama-cpp-python --upgrade --force-r
 ```
 If there are further issues this guide should fix them. https://medium.com/@piyushbatra1999/installing-llama-cpp-python-with-nvidia-gpu-acceleration-on-windows-a-short-guide-0dfac475002d
 
-### Run graphical interface
+## Run graphical interface
 After finishing the installation run in the projects directory this command:
 ```
 streamlit run interface/app.py
