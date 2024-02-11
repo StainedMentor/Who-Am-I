@@ -23,7 +23,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 ### Help
 ![help](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/help.png)
  
-* <span style="color:blue">E: Extroversion </span> - This dimension represents how individuals interact with the world. Extroverts tend to be outgoing, social, and energized by interactions with others.
+* E: Extroversion - This dimension represents how individuals interact with the world. Extroverts tend to be outgoing, social, and energized by interactions with others.
 * N: Intuition - This dimension represents how individuals process information. Intuitive individuals tend to focus on patterns, possibilities, and abstract concepts rather than concrete details.
 * T: Thinking - This dimension represents how individuals make decisions. Thinkers tend to prioritize logic and objective analysis when making decisions.
 * J: Judging - This dimension represents how individuals approach structure and organization. Judging individuals prefer a structured and organized lifestyle, with a focus on planning and decision-making.
