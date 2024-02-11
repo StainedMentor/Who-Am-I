@@ -16,7 +16,7 @@ def help():
 
         #celebritis database
         data = pd.read_json("data.json")
-        data = pd.DataFrame(data).iloc[:, :2]
+        data = pd.DataFrame(data)
         data.columns = ['Name', 'MBTI Type']
 
         st.title("Our robots")
