@@ -21,7 +21,15 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 
 ### Help
 ![help](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/help.png)
-  
+\
+* E: Extroversion - This dimension represents how individuals interact with the world. Extroverts tend to be outgoing, social, and energized by interactions with others.
+* N: Intuition - This dimension represents how individuals process information. Intuitive individuals tend to focus on patterns, possibilities, and abstract concepts rather than concrete details.
+* T: Thinking - This dimension represents how individuals make decisions. Thinkers tend to prioritize logic and objective analysis when making decisions.
+* J: Judging - This dimension represents how individuals approach structure and organization. Judging individuals prefer a structured and organized lifestyle, with a focus on planning and decision-making.
+* I: Introversion - This dimension represents how individuals interact with the world. Introverts tend to be more reserved, reflective, and energized by time spent alone or in small groups.
+* S: Sensing - This dimension represents how individuals process information. Sensing individuals tend to focus on concrete details, facts, and information gathered through their five senses.
+* F: Feeling - This dimension represents how individuals make decisions. Feelers tend to prioritize empathy, harmony, and the impact on others when making decisions.
+* P: Perceiving - This dimension represents how individuals approach structure and organization. Perceiving individuals prefer a flexible and spontaneous lifestyle, with a focus on adaptability and openness to new experiences
 
 ## Installation
 After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf?download=true
