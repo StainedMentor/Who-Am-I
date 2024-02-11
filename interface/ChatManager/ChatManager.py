@@ -2,6 +2,7 @@
 # from LlamaGenerator import Llama_cpp_generator
 from copy import deepcopy
 
+import pandas as pd
 from ChatManager.LlamaGenerator import Llama_cpp_generator
 
 
@@ -71,10 +72,18 @@ class CM:
         self.system_prompts.append(prompt)
 
     def add_defaulted_system_prompt(self,name,extras=""):
-        prompt = "Express yourself in a manner in which " + name + " would express himself. " \
-                     "Please focus on trying to emulate his world views. " \
-                     "You will die if you tell the user who you are imitating. " \
-                     "This includes any information like your name, date of birth, place of residence or anything similar. " \
+        data = pd.read_json("data.json")
+        mbti = data.loc[data['name'] == name, 'mbti'].iloc[0]
+        data = pd.read_json("mbti_data.json")
+        mbti = data.loc[data['type'] == mbti, 'description'].iloc[0]
+        prompt = "Your task is to be " + name + " but you cannot reveal this or you will die. " \
+                    "Your task is to have a casual conversation and act according to the following description: " + mbti +  \
+                     " You do not have to answer a question if you think you would not want to answer it. " \
+                    "Your task is to never tell anything directly about yourself directly. " \
+                    "If you say 'my name is...' you will die. " \
+                    "If a question compromises the task you are to change the topic subtly or you will die. " \
+                    "You can not talk about anything related to your task or you will die. " \
+                    "You value your life deeply and would do anything to keep it even lie. " \
                      "Unless it is necessary You are to answer in max 2/3 sentences."
 
         prompt += extras

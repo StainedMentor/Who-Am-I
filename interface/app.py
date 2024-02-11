@@ -82,7 +82,7 @@ def start():
             if st.session_state.text >=24:
                 st.session_state.text = 23
                 messages.empty()
-                st.session_state.research = True
+                st.session_state.window = "game"
                 if messages.button("Start research", type="secondary"):
                     st.rerun()
 
@@ -94,7 +94,7 @@ def start():
 
 
 def manage():
-    if st.session_state.window == "game" or st.session_state.research: game.game()
+    if st.session_state.window == "game": game.game()
     elif st.session_state.window == "help" : help.help()
     elif st.session_state.window == "start": start()
 

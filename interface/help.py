@@ -9,15 +9,13 @@ def help():
     with st.container(border=True):
         #mbti database
         mbti_data = pd.read_json("mbti_data.json")
-        mbti_data = pd.DataFrame(mbti_data)
         mbti_data.columns = ['MBTI Type', 'Description']
         st.title("Short note from Professor")
         st.table(mbti_data)
 
         #celebrities database
-        data = pd.read_json("data.json")
-        data = pd.DataFrame(data)
-        data.columns = ['Name', 'MBTI Type']
+        data = pd.read_json("data.json").iloc[:, :1]
+        data.columns = ['Name']
 
         st.title("Our robots")
         st.table(data)

@@ -29,7 +29,7 @@ def game():
         return 2
 
 
-    @st.cache_resource
+    @st.cache_data
     def get_data():
         data = pd.read_json("data.json")
         data = pd.DataFrame(data)
@@ -45,8 +45,13 @@ def game():
         cm = CM()
         for name in names:
             cm.add_defaulted_system_prompt(name)
-            print(cm.system_prompts)
-        return CM()
+            print(names)
+        return cm
+
+    @st.cache_data
+    def shuffle(mbtis):
+        return random.sample(mbtis, len(mbtis))
+
 
     BOTS = bots_num()
     ACTIVE_BOT = 1
@@ -54,11 +59,10 @@ def game():
     # getting data
     # types = get_types()
     names,mbtis = get_data()
-    shuffled_mbtis = random.sample(mbtis, len(mbtis))
+    shuffled_mbtis = shuffle(mbtis)
 
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
     cm = init_CM(names[0:BOTS])
-    shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
 
 
 
@@ -87,8 +91,6 @@ def game():
                 messages.chat_message("user").write(prompt)
                 cm.add_user_message(prompt)
                 stream = cm.get_response_stream()
-                # !!!!!!IMPORTANT!!!!!! Dont delete this print it doesnt work without this !!!!!!IMPORTANT!!!!!!
-                print(cm.chats)
                 with messages.chat_message("assistant"):
                     st.write_stream(stream)
                 # st.experimental_rerun()
@@ -102,23 +104,30 @@ def game():
         with st.container(border=True, height=550):
             options = []
             for bot in range(BOTS):
+                index = None
+                if 'selected_option' in st.session_state:
+                    index = st.session_state.selected_option[bot]
                 option = st.selectbox(
                     f"Bot {bot+1}",
                     (shuffled_mbtis),
-                    index=None,
+                    index=index,
                     placeholder="Am I...",
                     key = f"bot{bot+1}")
+                print(option)
 
-                if 'option' not in st.session_state:
-                    st.session_state.selected_option = option
+                if 'selected_option' not in st.session_state:
+                    temp = [None,None,None,None]
+                    st.session_state.selected_option = temp
 
+                if not option is None:
+                    st.session_state.selected_option[bot] = shuffled_mbtis.index(option)
                 options.append(option)
         if st.button("Finish research", type="secondary", use_container_width=True):
             counter = 0
             for i in range(0, len(options)):
                 if options[i] == mbtis[i]:
                     counter += 1
-            score = counter / app.lvl * 100
+            score = counter / st.session_state.level * 100
             st.empty()
             st.write(f'Congratulations! {score}% of your answers were correct')
 
