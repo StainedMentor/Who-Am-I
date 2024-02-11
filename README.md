@@ -6,6 +6,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 ### Start
 * User is introduced to the plot and MBTI types.
 * User can select one of 3 difficulty levels, each defines number of bots in gamplay - easy = 4, medium = 5, hard = 6.\
+  \
 ![start](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/select.png)
 ### Game
 * User can use sidebar window to choose page -> game, help, start, settings. Game is a page for gameplay, help contains short notes about MBTI types, start restarts the game and settings manipulates options in the game.
@@ -15,6 +16,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * User can talk to each bot by selecting specific button on the top of the left column. Bots mimic certain celebrity, they can not tell user who they are.
 * User chooses predicted MBTI type for each bot on the right column selectboxes.
 * After clicking "Finish research" button, user gets his resukts in %.\
+  \
 ![game](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/game.png)
 
 ### Help
