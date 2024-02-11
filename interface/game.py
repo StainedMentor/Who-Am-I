@@ -1,21 +1,44 @@
 import streamlit as st
 import pandas as pd
+# import app
+import random
 from ChatManager.ChatManager import CM
+
 def game():
-    # st.session_state.window = "game"
+
+    # @st.cache_data
+    # def bots_num(lvl = 4):
+    #     return lvl
+
+    # @st.cache_data
+    # def get_types():
+    #     data = pd.read_json("data.json")
+    #     data = pd.DataFrame(data)
+    #
+    #     types = data['mbti'].sample(n=4)
+    #
+    #     return types
+
 
     @st.cache_data
     def bots_num():
-        return 4
+        return st.session_state.level
+
+    @st.cache_data
+    def additional_personalities():
+        return 2
+
 
     @st.cache_resource
-    def get_names():
+    def get_data():
         data = pd.read_json("data.json")
         data = pd.DataFrame(data)
 
-        names = data['name'].sample(n=4)
+        selected_data = data.sample(n=bots_num()+additional_personalities())
+        selected_names = selected_data['name'].tolist()
+        selected_mbti = selected_data['mbti'].tolist()
 
-        return names
+        return selected_names, selected_mbti
 
     @st.cache_resource
     def init_CM(names):
@@ -23,16 +46,19 @@ def game():
         for name in names:
             cm.add_defaulted_system_prompt(name)
             print(cm.system_prompts)
-        return cm
+        return CM()
 
     BOTS = bots_num()
     ACTIVE_BOT = 1
 
     # getting data
-    names = get_names()
-    chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
-    cm = init_CM(names)
+    # types = get_types()
+    names,mbtis = get_data()
+    shuffled_mbtis = random.sample(mbtis, len(mbtis))
 
+    chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
+    cm = init_CM(names[0:BOTS])
+    shakespear = "Express yourself in a manner in which William Shakespeare would express himself. Please focus on trying to emulate his world views. Under no circumstances can you reveal any information that could give you away. This includes any information like your name, date of birth, place of residence or anything similar"
 
 
 
@@ -52,7 +78,7 @@ def game():
                         cm.switch_p(ACTIVE_BOT)
 
 
-            messages = st.container(height=300, border=True)
+            messages = st.container(height=350, border=True)
             for message in cm.chats[cm.selected_p]:
                 with messages.chat_message(message["role"]):
                     st.write(message["content"])
@@ -69,16 +95,16 @@ def game():
 
 
     with bots:
-        with st.container(border=True, height=500):
+        with st.container(border=True, height=550):
             st.image("assets/temp.png", use_column_width=True)
 
     with guesses:
-        with st.container(border=True, height=500):
+        with st.container(border=True, height=550):
             options = []
             for bot in range(BOTS):
                 option = st.selectbox(
                     f"Bot {bot+1}",
-                    (names),
+                    (shuffled_mbtis),
                     index=None,
                     placeholder="Am I...",
                     key = f"bot{bot+1}")
@@ -88,6 +114,12 @@ def game():
 
                 options.append(option)
         if st.button("Finish research", type="secondary", use_container_width=True):
-            pass
+            counter = 0
+            for i in range(0, len(options)):
+                if options[i] == mbtis[i]:
+                    counter += 1
+            score = counter / app.lvl * 100
+            st.empty()
+            st.write(f'Congratulations! {score}% of your answers were correct')
 
 

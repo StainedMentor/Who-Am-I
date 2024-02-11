@@ -21,6 +21,8 @@ if "lvl" not in st.session_state:
 if "research" not in st.session_state:
     st.session_state.research = False
 
+if "level" not in st.session_state:
+    st.session_state.level = 4
 
 def start():
     with st.container(border=True,height=600):
@@ -61,22 +63,27 @@ def start():
                 if lvls_b.button("Easy", type="secondary", use_container_width=True):
                     st.session_state.lvl = 1
                     st.session_state.text += 1
+                    st.session_state.level = 4
+
 
                 elif lvls_b.button("Medium", type="secondary", use_container_width=True):
                     st.session_state.lvl = 2
                     st.session_state.text += 1
+                    st.session_state.level = 5
+
 
                 elif lvls_b.button("Hard", type="secondary", use_container_width=True):
                     st.session_state.lvl = 3
                     st.session_state.text += 1
+                    st.session_state.level = 6
                 #TU KONIEC POZIOMOW
 
 
             if st.session_state.text >=24:
                 st.session_state.text = 23
                 messages.empty()
+                st.session_state.research = True
                 if messages.button("Start research", type="secondary"):
-                    st.session_state.research = True
                     st.rerun()
 
             elif st.session_state.text <24:

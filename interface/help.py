@@ -5,7 +5,6 @@ import pandas as pd
 
 def help():
     utilis.remove_space()
-    # st.session_state.window = "help"
 
     with st.container(border=True):
         #mbti database
@@ -15,10 +14,10 @@ def help():
         st.title("Short note from Professor")
         st.table(mbti_data)
 
-        #celebritis database
+        #celebrities database
         data = pd.read_json("data.json")
         data = pd.DataFrame(data)
-        data.columns = ['Name', 'MBTI Type'],
+        data.columns = ['Name', 'MBTI Type']
 
         st.title("Our robots")
         st.table(data)
