@@ -8,7 +8,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * User can select one of 3 difficulty levels, each defines number of bots in gamplay - easy = 4, medium = 5, hard = 6.\
   \
 ![start](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/select.png)
- \
+  
 ### Game
 * User can use sidebar window to choose page -> game, help, start, settings. Game is a page for gameplay, help contains short notes about MBTI types, start restarts the game and settings manipulates options in the game.
 * On the left column there is a chat for each of X bots.
@@ -19,10 +19,10 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * After clicking "Finish research" button, user gets his resukts in %.\
   \
 ![game](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/game.png)
- \
+  
 ### Help
 ![help](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/help.png)
- \
+ 
 * E: Extroversion - This dimension represents how individuals interact with the world. Extroverts tend to be outgoing, social, and energized by interactions with others.
 * N: Intuition - This dimension represents how individuals process information. Intuitive individuals tend to focus on patterns, possibilities, and abstract concepts rather than concrete details.
 * T: Thinking - This dimension represents how individuals make decisions. Thinkers tend to prioritize logic and objective analysis when making decisions.
