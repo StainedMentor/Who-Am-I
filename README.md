@@ -39,6 +39,8 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * F: Feeling - This dimension represents how individuals make decisions. Feelers tend to prioritize empathy, harmony, and the impact on others when making decisions.
 * P: Perceiving - This dimension represents how individuals approach structure and organization. Perceiving individuals prefer a flexible and spontaneous lifestyle, with a focus on adaptability and openness to new experiences 
 
+### Tools used
+The project uses Llama2 at its core. The API we built around the model uses llama-cpp-python as it had the best crossplatform hardware utilisation. It is designed in a manner where we could use bindings to different models to run the application. We also found that running larger than 7B parameter models on local machines with 8GB RAM is not viable. After some testing we found that the 7B 4_K_M quantised model has the best performance and doesnt run out of RAM.
 ## Installation
 After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf?download=true
 
