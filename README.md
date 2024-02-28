@@ -65,4 +65,5 @@ After installing run **ConsoleChat.py**.
 This will start the backend and allow you to chat with 4 "different" bots.
 To switch between bots simply type an integer from 0 to 3. (Ommit any other charecters to switch)
 
+Milosz to kutas
 Kuba ssie chuja
