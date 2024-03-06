@@ -1,5 +1,5 @@
 import streamlit as st
-import utilis, game, help
+import utilis, game, help, about
 
 st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
 utilis.add_logo()
@@ -13,10 +13,10 @@ if "start" not in st.session_state:
     st.session_state.start = False
 
 if "text" not in st.session_state:
-    st.session_state.text = 0
+    st.session_state.text = 21
 
 if "lvl" not in st.session_state:
-    st.session_state.lvl = 0
+    st.session_state.lvl = 1
 
 if "research" not in st.session_state:
     st.session_state.research = False
@@ -97,6 +97,7 @@ def manage():
     if st.session_state.window == "game": game.game()
     elif st.session_state.window == "help" : help.help()
     elif st.session_state.window == "start": start()
+    elif st.session_state.window == "about": about.about()
 
 with st.sidebar:
     utilis.margin_top(40)
@@ -107,6 +108,8 @@ with st.sidebar:
     b1 = st.button("Get help from Professor", type="secondary", use_container_width=True)
     b2 = st.button("Start again your research", type="secondary", use_container_width=True)
     b3 = st.button("Settings", type="secondary", use_container_width=True)
+    b4 = st.button("About us", type="secondary", use_container_width=True)
+
 
 if b0:
     st.session_state.window = "game"
@@ -114,6 +117,6 @@ elif b1:
     st.session_state.window = "help"
 elif b2:
     st.session_state.window = "start"
-
+elif b4:
+    st.session_state.window = "about"
 manage()
-

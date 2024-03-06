@@ -64,3 +64,11 @@ def stream_data2(idx):
         yield word + " "
         time.sleep(0.07)
 
+
+def github():
+
+    st.markdown('<a href="https://github.com/StainedMentor/Who-Am-I">'
+                '<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/github-mark-white.png?raw=true" '
+                'width="50" height="50"></a>',
+                unsafe_allow_html=True)
+
