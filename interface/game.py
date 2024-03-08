@@ -38,11 +38,9 @@ def game():
     def shuffle(mbtis):
         return random.sample(mbtis, len(mbtis))
 
-    def update_scoreboard(score, df, user = "agkotki"):
-        print(1)
+    def update_scoreboard(score, df, user = st.session_state.username):
         new_data = {'username': [user], 'score': [score]}
         data = pd.DataFrame(new_data)
-        print(df, type(data))
         update = pd.concat([df,data],ignore_index=True)
         return update
 
@@ -52,7 +50,6 @@ def game():
     if 'data' not in st.session_state:
         st.session_state.data = pd.DataFrame({'username': [], 'score': []})
 
-    print(st.session_state.data)
 
     names,mbtis = get_data()
     shuffled_mbtis = shuffle(mbtis)
@@ -126,6 +123,7 @@ def game():
                     counter += 1
             score = counter / st.session_state.level * 100
             st.empty()
+            print(st.session_state.username)
 
             st.session_state.data = update_scoreboard(score, st.session_state.data)
             scoreboard = Modal(key="score",title="Scoreboard")

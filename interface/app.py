@@ -5,12 +5,14 @@ st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state=
 utilis.add_logo()
 utilis.remove_space()
 
+if 'username' not in st.session_state:
+    st.session_state.username = ""
 
 if 'window' not in st.session_state:
     st.session_state.window = ""
 
 if "start" not in st.session_state:
-    st.session_state.start = False
+    st.session_state.start = 0
 
 if "text" not in st.session_state:
     st.session_state.text = 21
@@ -25,21 +27,30 @@ if "level" not in st.session_state:
     st.session_state.level = 4
 
 def start():
+
     with st.container(border=True,height=600):
         img, start_b, lvls_b = st.columns([1, 0.9, 1])
 
         #nie wiem czemu tak ma byc ale wtedy dziala znikanie po wcisnieciu start
-        if not st.session_state.start:
-            st.session_state.start = True
-            if start_b.button("Start", type="secondary", use_container_width=True):
-                pass
+        if st.session_state.start==0:
+            st.session_state.start = 1
+            if start_b.button("Start", type="secondary", use_container_width=True):pass
 
-        elif st.session_state.start:
+
+        elif st.session_state.start==1:
+            username = st.text_input("username",st.session_state.username)
+            st.session_state.username = username
+
+            if st.button("Meet Professor"):
+                st.session_state.start = 2
+
+
+        elif st.session_state.start==2:
 
             utilis.margin_top(40)
             img.image("assets/scientist.png", width=350)
             utilis.margin_top(30)
-            print(st.session_state.research)
+
 
             messages = st.container(height=150, border=True)
 
