@@ -1,24 +1,10 @@
 import streamlit as st
 import pandas as pd
-# import app
+from streamlit_modal import Modal
 import random
 from ChatManager.ChatManager import CM
 
 def game():
-
-    # @st.cache_data
-    # def bots_num(lvl = 4):
-    #     return lvl
-
-    # @st.cache_data
-    # def get_types():
-    #     data = pd.read_json("data.json")
-    #     data = pd.DataFrame(data)
-    #
-    #     types = data['mbti'].sample(n=4)
-    #
-    #     return types
-
 
     @st.cache_data
     def bots_num():
@@ -42,7 +28,7 @@ def game():
 
     @st.cache_resource
     def init_CM(names):
-        cm = CM(n_people=len(names))
+        cm = CM()
         for name in names:
             cm.add_defaulted_system_prompt(name)
             print(names)
@@ -52,12 +38,22 @@ def game():
     def shuffle(mbtis):
         return random.sample(mbtis, len(mbtis))
 
+    def update_scoreboard(score, df, user = "agkotki"):
+        print(1)
+        new_data = {'username': [user], 'score': [score]}
+        data = pd.DataFrame(new_data)
+        print(df, type(data))
+        update = pd.concat([df,data],ignore_index=True)
+        return update
 
     BOTS = bots_num()
     ACTIVE_BOT = 1
 
-    # getting data
-    # types = get_types()
+    if 'data' not in st.session_state:
+        st.session_state.data = pd.DataFrame({'username': [], 'score': []})
+
+    print(st.session_state.data)
+
     names,mbtis = get_data()
     shuffled_mbtis = shuffle(mbtis)
 
@@ -113,15 +109,16 @@ def game():
                     index=index,
                     placeholder="Am I...",
                     key = f"bot{bot+1}")
-                print(option)
 
                 if 'selected_option' not in st.session_state:
-                    temp = [None]*BOTS
+                    temp = [None,None,None,None]
                     st.session_state.selected_option = temp
 
                 if not option is None:
                     st.session_state.selected_option[bot] = shuffled_mbtis.index(option)
                 options.append(option)
+
+
         if st.button("Finish research", type="secondary", use_container_width=True):
             counter = 0
             for i in range(0, len(options)):
@@ -129,6 +126,10 @@ def game():
                     counter += 1
             score = counter / st.session_state.level * 100
             st.empty()
-            st.write(f'Congratulations! {score}% of your answers were correct')
 
+            st.session_state.data = update_scoreboard(score, st.session_state.data)
+            scoreboard = Modal(key="score",title="Scoreboard")
+            with scoreboard.container():
+                sorted = st.session_state.data.sort_values(by='score', ascending=False)
+                st.dataframe(sorted, use_container_width=True)
 
