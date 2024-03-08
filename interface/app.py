@@ -15,7 +15,7 @@ if "start" not in st.session_state:
     st.session_state.start = 0
 
 if "text" not in st.session_state:
-    st.session_state.text = 21
+    st.session_state.text = 0
 
 if "lvl" not in st.session_state:
     st.session_state.lvl = 1
@@ -38,7 +38,9 @@ def start():
 
 
         elif st.session_state.start==1:
-            username = st.text_input("username",st.session_state.username)
+            st.write("Welcome to Who Am I?\n Tell me, what is your name?")
+
+            username = st.text_input("Your name:",st.session_state.username)
             st.session_state.username = username
 
             if st.button("Meet Professor"):

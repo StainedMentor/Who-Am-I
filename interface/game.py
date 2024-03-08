@@ -50,16 +50,21 @@ def game():
     if 'data' not in st.session_state:
         st.session_state.data = pd.DataFrame({'username': [], 'score': []})
 
+    if 'hints' not in st.session_state:
+        st.session_state.hints = 3
+
 
     names,mbtis = get_data()
     shuffled_mbtis = shuffle(mbtis)
 
+
+
+    #containery
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
     cm = init_CM(names[0:BOTS])
 
-
-
     with chat:
+        st.write(f"name: {st.session_state.username}")
         with st.container(border=True):
             st.write(
             f'<div style="text-align: center; margin-bottom: 20px; font-size: 24px;'
@@ -90,10 +95,23 @@ def game():
 
 
     with bots:
+        st.write(f"hints: {st.session_state.hints}")
         with st.container(border=True, height=550):
             st.image("assets/temp.png", use_column_width=True)
 
     with guesses:
+        if st.button("Call Professor", type="primary", use_container_width=True) and st.session_state.hints >0:
+            help = Modal(key="help",title="Help")
+            st.session_state.hints-=1
+            with help.container():
+                img, text = st.columns([0.8,1.2], gap="large")
+                with img: st.image("assets/scientist.png", use_column_width=True)
+                with text:
+                    #tutaj prmpty podpowiedzi dla wybranego bota
+                    print(names[cm.selected_p])
+                    st.write(f"selected bot: {cm.selected_p+1}")
+
+
         with st.container(border=True, height=550):
             options = []
             for bot in range(BOTS):
@@ -123,11 +141,11 @@ def game():
                     counter += 1
             score = counter / st.session_state.level * 100
             st.empty()
-            print(st.session_state.username)
 
             st.session_state.data = update_scoreboard(score, st.session_state.data)
             scoreboard = Modal(key="score",title="Scoreboard")
             with scoreboard.container():
                 sorted = st.session_state.data.sort_values(by='score', ascending=False)
                 st.dataframe(sorted, use_container_width=True)
+
 
