@@ -14,6 +14,12 @@ class CM:
         self.selected_p = 0
         self.generator = Llama_cpp_generator()
 
+    def reset(self, n_people=4):
+        self.n_people = n_people
+        self.chats = [[] for _ in range(n_people)]
+        self.system_prompts = []
+
+
     # switches the managers internal person selection
     def switch_p(self, p):
         self.selected_p = p
@@ -72,7 +78,6 @@ class CM:
         self.system_prompts.append(prompt)
 
     def add_defaulted_system_prompt(self,name,extras=""):
-        self.system_prompts = []
 
         data = pd.read_json("data.json")
         mbti = data.loc[data['name'] == name, 'mbti'].iloc[0]

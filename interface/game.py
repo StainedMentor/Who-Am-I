@@ -209,6 +209,7 @@ def game():
             st.session_state.lvl_data = get_data()
             names, mbtis = st.session_state.lvl_data
             shuffled_mbtis = shuffle(mbtis)
+            cm.reset()
             add_names(names[0:BOTS])
 
             # st.rerun()
