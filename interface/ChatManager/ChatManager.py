@@ -72,6 +72,8 @@ class CM:
         self.system_prompts.append(prompt)
 
     def add_defaulted_system_prompt(self,name,extras=""):
+        self.system_prompts = []
+
         data = pd.read_json("data.json")
         mbti = data.loc[data['name'] == name, 'mbti'].iloc[0]
         data = pd.read_json("mbti_data.json")
