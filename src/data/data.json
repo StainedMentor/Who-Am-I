@@ -1,0 +1,19 @@
+[
+  {"name":"Elon Musk", "mbti":"INTJ", "prompt":"hi"},
+  {"name":"Bill Gates" , "mbti":"INTP" },
+  {"name":"William Shakespeare" , "mbti":"INFP" },
+  {"name":"Daenerys Targaryen" , "mbti":"INFJ" },
+  {"name":"Sigmund Freud", "mbti":"ISTJ"},
+  {"name":"Shrek", "mbti":"ISTP"},
+  {"name":"Beyonce", "mbti":"ISFJ"},
+  {"name":"Michael Jackson", "mbti":"ISFP"},
+  {"name":"Sigmund Freud", "mbti":"ISTJ"},
+  {"name":"Steve Jobs", "mbti":"ENTJ"},
+  {"name":"Socrates", "mbti":"ENTP"},
+  {"name":"Kanye West", "mbti":"ENFP"},
+  {"name":"Barack Obama", "mbti":"ENFJ"},
+  {"name":"Elvis Presley", "mbti":"ESFP"},
+  {"name":"Lightning Mcqueen", "mbti":"ESTP"},
+  {"name":"Gordon Ramsey", "mbti":"ESTJ"},
+  {"name":"Taylor Swift", "mbti":"ESFJ"}
+]

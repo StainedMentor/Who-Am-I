@@ -1,9 +1,9 @@
 
-# from LlamaGenerator import Llama_cpp_generator
+from .LlamaGenerator import Llama_cpp_generator
 from copy import deepcopy
 
 import pandas as pd
-from ChatManager.LlamaGenerator import Llama_cpp_generator
+# from src.ChatManager.ChatManager import Llama_cpp_generator
 
 
 class CM:
@@ -12,7 +12,7 @@ class CM:
         self.chats = [[] for _ in range(n_people)]
         self.system_prompts = []
         self.selected_p = 0
-        self.generator = Llama_cpp_generator()
+        self.generator = Llama_cpp_generator(m_path="llama-2-7b-chat.Q4_K_M.gguf")
 
     # switches the managers internal person selection
     def switch_p(self, p):
@@ -72,6 +72,8 @@ class CM:
         self.system_prompts.append(prompt)
 
     def add_defaulted_system_prompt(self,name,extras=""):
+        self.system_prompts = []
+
         data = pd.read_json("data.json")
         mbti = data.loc[data['name'] == name, 'mbti'].iloc[0]
         data = pd.read_json("mbti_data.json")
