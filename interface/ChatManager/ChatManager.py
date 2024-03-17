@@ -18,7 +18,10 @@ Unless it is necessary You are to answer in max 2/3 sentences.
 """
 
 HINT_PROMPT = """
-You will now give a slight hint as to who you are or you will die.
+You are the professor. You live in a cyberpunk. You are trying to create humanoid robots to replace certain celebrities.
+You are tasked to give a hint as who you are currently experimenting on.
+The person you are trying to replicate is {name}.
+Under no circumstances should you tell the full name of the person.
 """
 
 CM_DEBUG = False
@@ -58,14 +61,14 @@ class CM:
         chat_copy.insert(-2,system_message)
 
         return chat_copy
-    def prepare_chat_hint_copy(self):
-        chat_copy = deepcopy(self.chats[self.selected_p])
+    def prepare_chat_hint(self):
+        chat = []
         hint_question = {"role":"user","content":"give me a hint about your name"}
-        chat_copy.insert(-2,hint_question)
-        system_message = {"role":"system","content":self.system_prompts[self.selected_p]+HINT_PROMPT}
-        chat_copy.insert(-2,system_message)
+        chat.append(hint_question)
+        system_message = {"role":"system","content":HINT_PROMPT.format(name=self.person_list[self.selected_p])}
+        chat.append(system_message)
 
-        return chat_copy
+        return chat
 
     # appends bots response object to chat
     def add_bot_response_to_chat(self, response):
@@ -80,8 +83,9 @@ class CM:
         return self.stream_wrapper(stream)
     def get_hint_stream(self):
         if CM_DEBUG:
-            return "This is a hint"
-        chat = self.prepare_chat_hint_copy()
+            return """
+            Ah, a curious student! adjusts glasses Well, let me see... winks The celebrity I'm working on is someone who was known for their charismatic stage presence and electrifying performances. They were the king of rock and roll, if you will. grin Their name starts with a letter that's often associated with royalty and power. winks again Can you guess who it might be? 😉"""
+        chat = self.prepare_chat_hint()
         stream = self.generator.create_response_stream(chat)
 
         return self.hint_stream_wrapper(stream)
