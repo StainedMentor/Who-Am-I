@@ -37,9 +37,7 @@ def game():
     def get_data():
         data = pd.read_json("data.json")
         data = pd.DataFrame(data)
-        # print(data)
         selected_data = data.sample(n=bots_num()+additional_personalities())
-        # print(selected_data)
         selected_names = selected_data['name'].tolist()
         selected_mbti = selected_data['mbti'].tolist()
 
@@ -48,8 +46,8 @@ def game():
     @st.cache_resource
     def init_CM():
         cm = CM()
-
         return cm
+
 
     @st.cache_resource
     def add_names(names):
@@ -68,7 +66,18 @@ def game():
         update = pd.concat([df,data],ignore_index=True)
         return update
 
-    # if st.session_state.lvlup >=0:
+
+    def rerun_level():
+        temp = [None] * BOTS
+        st.session_state.selected_option = temp
+        st.session_state.curr_lvl += 1
+        st.session_state.lvl_data = get_data()
+        names, mbtis = st.session_state.lvl_data
+        st.session_state.hints = 3
+        cm.reset(BOTS)
+        add_names(names[0:BOTS])
+
+
     BOTS = bots_num()
     ACTIVE_BOT = 1
 
@@ -78,7 +87,6 @@ def game():
 
     names,mbtis = st.session_state.lvl_data
     shuffled_mbtis = shuffle(mbtis)
-    print(1)
 
     print(names, mbtis)
 
@@ -127,7 +135,6 @@ def game():
                 stream = cm.get_response_stream()
                 with messages.chat_message("assistant"):
                     st.write_stream(stream)
-                # st.experimental_rerun()
 
 
     with bots:
@@ -194,28 +201,23 @@ def game():
 
             st.session_state.data = update_scoreboard(score, st.session_state.data)
 
-
-
             #scoreboard display
             scoreboard = Modal(key="score",title="Scoreboard")
+
             with scoreboard.container():
                 sorted = st.session_state.data.sort_values(by='score', ascending=False)
                 st.dataframe(sorted, use_container_width=True)
 
-        if st.button("Next round", type="primary"):
-            temp = [None] * BOTS
-            st.session_state.selected_option = temp
-            st.session_state.curr_lvl +=1
-            st.session_state.lvl_data = get_data()
-            names, mbtis = st.session_state.lvl_data
-            shuffled_mbtis = shuffle(mbtis)
-            cm.reset()
-            add_names(names[0:BOTS])
+                temp1, temp2 = st.columns([0.3,1], gap='small')
 
-            # st.rerun()
+                #w funkcji rerun level jest reset ustawien i trzeba dodac zarzadzanie levelami
+                with temp1:
+                    if st.button("Next round", type="primary", on_click=rerun_level):pass
 
-                    # names, mbtis = get_data()
-                    # shuffled_mbtis = shuffle(mbtis)
+                #tutaj po prostu kontynuuje sie dany poziom zeby poprawic
+                with temp2:
+                    if st.button("Improve in this level", type="secondary"):pass
+
 
 
 
