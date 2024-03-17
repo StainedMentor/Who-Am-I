@@ -156,6 +156,7 @@ def game():
                     #tutaj prmpty podpowiedzi dla wybranego bota
                     print(names[cm.selected_p])
                     st.write(f"selected bot: {cm.selected_p+1}")
+                    st.write(cm.get_hint_stream())
 
 
         with st.container(border=True, height=550):
