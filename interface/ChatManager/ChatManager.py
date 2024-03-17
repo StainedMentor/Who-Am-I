@@ -60,6 +60,8 @@ class CM:
         return chat_copy
     def prepare_chat_hint_copy(self):
         chat_copy = deepcopy(self.chats[self.selected_p])
+        hint_question = {"role":"user","content":"give me a hint about your name"}
+        chat_copy.insert(-2,hint_question)
         system_message = {"role":"system","content":self.system_prompts[self.selected_p]+HINT_PROMPT}
         chat_copy.insert(-2,system_message)
 
