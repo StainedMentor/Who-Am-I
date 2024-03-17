@@ -21,7 +21,7 @@ HINT_PROMPT = """
 You will now give a slight hint as to who you are or you will die.
 """
 
-
+CM_DEBUG = False
 class CM:
     def __init__(self, n_people=4):
         self.n_people = n_people
@@ -79,10 +79,25 @@ class CM:
 
         return self.stream_wrapper(stream)
     def get_hint_stream(self):
+        if CM_DEBUG:
+            return "This is a hint"
         chat = self.prepare_chat_hint_copy()
         stream = self.generator.create_response_stream(chat)
 
-        return self.stream_wrapper(stream)
+        return self.hint_stream_wrapper(stream)
+
+    def hint_stream_wrapper(self, stream):
+        for output in stream:
+            if not 'content' in output['choices'][0]['delta']:
+                continue
+            # if output['choices'][0]['delta']['content'] == "\n":
+            #     continue
+
+            token = output['choices'][0]['delta']['content']
+            # result += token
+            # self.chats[self.selected_p][-1]['content'] = result
+
+            yield token
 
     # see get_response_stream.
     def stream_wrapper(self,stream):
