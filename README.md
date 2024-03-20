@@ -46,10 +46,13 @@ After cloning the repository and installing requirement, download and add the mo
 
 After installing requirements, change the config file in  `~/.streamlit/config.toml.` directory.
 
-On mac everything should work out of the box. If you are working on windows llama-cpp-python installs a CPU only version, which is extremely slow for this project. You can reinstall this package with the following command to use hardware acceleration:
+On mac everything should work out of the box. If you are working on windows llama-cpp-python installs a CPU only version, which is extremely slow for this project. You can reinstall this package with the following command to use hardware acceleration `Use command prompt with the projects venvs selected to reinstall`:
 ```
-CMAKE_ARGS="-DLLAMA_CUBLAS=on"  pip install llama-cpp-python --upgrade --force-reinstall --no-cache-dir
+set CMAKE_ARGS=-DLLAMA_CUBLAS=on
+set FORCE_CMAKE=1
+pip install llama-cpp-python --force-reinstall --upgrade --no-cache-dir
 ```
+If you are running the project outside of pycharm you might have to manually activate your default python venv to set the environment parameters.
 If there are further issues this guide should fix them. https://medium.com/@piyushbatra1999/installing-llama-cpp-python-with-nvidia-gpu-acceleration-on-windows-a-short-guide-0dfac475002d
 
 ## Run graphical interface
