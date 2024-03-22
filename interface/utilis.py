@@ -2,6 +2,44 @@ import streamlit as st
 import time
 import pandas as pd
 
+def background():
+    st.markdown(
+        """
+        <style>
+
+        .stApp {
+            background-image: url("https://github.com/StainedMentor/Who-Am-I/blob/main/assets/tests/bg1.jpg?raw=true");
+            background-size: 50%,50%
+            
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+def container_bg():
+    st.markdown(
+        """
+        <style>
+    
+         div[data-testid="stVerticalBlock"] > div{
+            background-color: #1c1c1c;
+            border-radius: 15px;
+            max-width: 80%
+            margin: auto;
+
+
+        }
+   
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+
+
 def add_logo():
     st.markdown(
         """

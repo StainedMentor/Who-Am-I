@@ -4,6 +4,9 @@ import utilis, game, help, about
 st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
 utilis.add_logo()
 utilis.remove_space()
+utilis.background()
+
+utilis.container_bg()
 
 if 'username' not in st.session_state:
     st.session_state.username = ""
@@ -27,8 +30,8 @@ if "level" not in st.session_state:
     st.session_state.level = 4
 
 def start():
-
     with st.container(border=True,height=600):
+
         img, start_b, lvls_b = st.columns([1, 0.9, 1])
 
         #nie wiem czemu tak ma byc ale wtedy dziala znikanie po wcisnieciu start
