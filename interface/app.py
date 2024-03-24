@@ -1,5 +1,5 @@
 import streamlit as st
-import utilis, game, help, about
+import utilis, game, help, about, streakTest
 
 st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
 utilis.add_logo()
@@ -122,7 +122,7 @@ def manage():
     elif st.session_state.window == "about": about.about()
     elif st.session_state.window == "streak":
         st.session_state.gamemode = 1
-        game.game()
+        streakTest.streak()
 
 with st.sidebar:
     utilis.margin_top(40)
