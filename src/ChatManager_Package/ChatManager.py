@@ -3,7 +3,7 @@ from .LlamaGenerator import Llama_cpp_generator
 from copy import deepcopy
 
 import pandas as pd
-# from src.ChatManager.ChatManager import Llama_cpp_generator
+# from src.ChatManager_Package.ChatManager_Package import Llama_cpp_generator
 
 
 class CM:
@@ -12,7 +12,7 @@ class CM:
         self.chats = [[] for _ in range(n_people)]
         self.system_prompts = []
         self.selected_p = 0
-        self.generator = Llama_cpp_generator(m_path="llama-2-7b-chat.Q4_K_M.gguf")
+        self.generator = Llama_cpp_generator(m_path="src/models/llama-2-7b-chat.Q4_K_M.gguf")
 
     # switches the managers internal person selection
     def switch_p(self, p):
@@ -74,9 +74,9 @@ class CM:
     def add_defaulted_system_prompt(self,name,extras=""):
         self.system_prompts = []
 
-        data = pd.read_json("data.json")
+        data = pd.read_json("src/data/data.json")
         mbti = data.loc[data['name'] == name, 'mbti'].iloc[0]
-        data = pd.read_json("mbti_data.json")
+        data = pd.read_json("src/data/mbti_data.json")
         mbti = data.loc[data['type'] == mbti, 'description'].iloc[0]
         prompt = "Your task is to be " + name + " but you cannot reveal this or you will die. " \
                     "Your task is to have a casual conversation and act according to the following description: " + mbti +  \

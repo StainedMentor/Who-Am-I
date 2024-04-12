@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 # import app
 import random
-from src.ChatManager.ChatManager import CM
+from src.ChatManager_Package.ChatManager import CM
+
 
 def game():
 
@@ -31,7 +32,7 @@ def game():
 
     @st.cache_data
     def get_data():
-        data = pd.read_json("data.json")
+        data = pd.read_json("src/data/data.json")
         data = pd.DataFrame(data)
 
         selected_data = data.sample(n=bots_num()+additional_personalities())
