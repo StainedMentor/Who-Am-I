@@ -1,9 +1,9 @@
 
-# from LlamaGenerator import Llama_cpp_generator
+from .LlamaGenerator import Llama_cpp_generator
 from copy import deepcopy
 
 import pandas as pd
-from ChatManager.LlamaGenerator import Llama_cpp_generator
+# from src.ChatManager_Package.ChatManager_Package import Llama_cpp_generator
 
 DEFAULT_SYSTEM_PROMPT = """
 Your task is to be {name} but you cannot reveal this or you will die. 
@@ -127,9 +127,9 @@ class CM:
 
     def add_defaulted_system_prompt(self,name,extras=""):
 
-        data = pd.read_json("data.json")
+        data = pd.read_json("src/data/data.json")
         mbti = data.loc[data['name'] == name, 'mbti'].iloc[0]
-        data = pd.read_json("mbti_data.json")
+        data = pd.read_json("src/data/mbti_data.json")
         mbti = data.loc[data['type'] == mbti, 'description'].iloc[0]
         prompt = DEFAULT_SYSTEM_PROMPT.format(name=name,mbti=mbti)
 
