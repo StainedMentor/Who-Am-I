@@ -1,1 +1,11 @@
 .gguf
+.xml
+/.idea/.gitignore
+/llama-2-7b-chat.Q4_K_M.gguf
+/src/models/llama-2-13b-chat.Q4_K_M.gguf
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+/.idea/Who-Am-I.iml
