@@ -1,5 +1,5 @@
 import streamlit as st
-import utilis
+from . import utilis
 
 def about():
     utilis.remove_space()

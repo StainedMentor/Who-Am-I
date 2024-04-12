@@ -1,25 +1,28 @@
 import streamlit as st
-from . import utilis, game, help
+from . import utilis, game, help, about
 
 def main():
-
-
     st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
     utilis.add_logo()
     utilis.remove_space()
+    utilis.background()
 
+    utilis.container_bg()
+
+    if 'username' not in st.session_state:
+        st.session_state.username = ""
 
     if 'window' not in st.session_state:
         st.session_state.window = ""
 
     if "start" not in st.session_state:
-        st.session_state.start = False
+        st.session_state.start = 0
 
     if "text" not in st.session_state:
         st.session_state.text = 0
 
     if "lvl" not in st.session_state:
-        st.session_state.lvl = 0
+        st.session_state.lvl = 1
 
     if "research" not in st.session_state:
         st.session_state.research = False
@@ -29,20 +32,31 @@ def main():
 
     def start():
         with st.container(border=True,height=600):
+
             img, start_b, lvls_b = st.columns([1, 0.9, 1])
 
             #nie wiem czemu tak ma byc ale wtedy dziala znikanie po wcisnieciu start
-            if not st.session_state.start:
-                st.session_state.start = True
-                if start_b.button("Start", type="secondary", use_container_width=True):
-                    pass
+            if st.session_state.start==0:
+                st.session_state.start = 1
+                if start_b.button("Start", type="secondary", use_container_width=True):pass
 
-            elif st.session_state.start:
+
+            elif st.session_state.start==1:
+                st.write("Welcome to Who Am I?\n Tell me, what is your name?")
+
+                username = st.text_input("Your name:",st.session_state.username)
+                st.session_state.username = username
+
+                if st.button("Meet Professor"):
+                    st.session_state.start = 2
+
+
+            elif st.session_state.start==2:
 
                 utilis.margin_top(40)
                 img.image("assets/scientist.png", width=350)
                 utilis.margin_top(30)
-                print(st.session_state.research)
+
 
                 messages = st.container(height=150, border=True)
 
@@ -53,7 +67,7 @@ def main():
 
                 #a little bit about mbti types
                 elif st.session_state.text >= 8:
-                    messages.write_stream(utilis.stream_data2(st.session_state.text - 8))
+                    messages.write_stream(utilis.stream_data2(st.session_state.text-8))
 
                 # if not st.session_state.research:
                 if st.session_state.text <24:
@@ -100,6 +114,7 @@ def main():
         if st.session_state.window == "game": game.game()
         elif st.session_state.window == "help" : help.help()
         elif st.session_state.window == "start": start()
+        elif st.session_state.window == "about": about.about()
 
     with st.sidebar:
         utilis.margin_top(40)
@@ -110,6 +125,8 @@ def main():
         b1 = st.button("Get help from Professor", type="secondary", use_container_width=True)
         b2 = st.button("Start again your research", type="secondary", use_container_width=True)
         b3 = st.button("Settings", type="secondary", use_container_width=True)
+        b4 = st.button("About us", type="secondary", use_container_width=True)
+
 
     if b0:
         st.session_state.window = "game"
@@ -117,8 +134,6 @@ def main():
         st.session_state.window = "help"
     elif b2:
         st.session_state.window = "start"
-
+    elif b4:
+        st.session_state.window = "about"
     manage()
-
-
-
