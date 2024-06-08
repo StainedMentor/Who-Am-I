@@ -1,5 +1,4 @@
 import os
-import sys
 
 from src import ChatManager_Package
 
@@ -14,6 +13,7 @@ def run_in_console():
 
         # adding system prompts
         CM.add_system_prompt(shakespear)
+        # CM.add_system_prompt("")
 
         while prompt != "die":
 
@@ -29,19 +29,19 @@ def run_in_console():
             # first add user message to chat
             CM.add_user_message(prompt)
             # create a stream object
-            stream = CM.get_response_stream()
-            # iterate over stream returning text chunks. this also adds the chunks to the chat history automatically.
-            result = ""
-            for chunk in stream:
-                result += chunk
-                sys.stdout.write('\r' + result)
-                sys.stdout.flush()
+            # stream = CM.get_response_stream()
+            # # iterate over stream returning text chunks. this also adds the chunks to the chat history automatically.
+            # result = ""
+            # for chunk in stream:
+            #     result += chunk
+            #     sys.stdout.write('\r' + result)
+            #     sys.stdout.flush()
 
 
-        # non stream response
-        # CM.generate_response()
-        # print(CM.chats[CM.selected_p])
-        # print(CM.chats[CM.selected_p][-1]["content"])
+            # non stream response
+            CM.generate_response()
+            # print(CM.chats[CM.selected_p])
+            print(CM.chats[CM.selected_p][-1]["content"])
 
 
 
