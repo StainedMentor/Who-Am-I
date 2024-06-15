@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ChatManager (class)
-parent: ChatManager
+parent: ChatManger Package
 nav_order: 2
 ---
 
