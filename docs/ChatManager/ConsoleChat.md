@@ -1,8 +1,6 @@
 ---
 layout: default
-title: ChatManager (class)
+title: ConsoleChat
 parent: ChatManger Package
-nav_order: 1
+nav_order: 3
 ---
-
-# class
