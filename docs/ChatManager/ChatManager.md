@@ -18,7 +18,6 @@ The package was designed to support multiple output options to be more reusable 
 - Console inference option
 - Llama wrapper
 
-
 ## Files
 | File              | description                                                                           |
 |:------------------|:--------------------------------------------------------------------------------------|
