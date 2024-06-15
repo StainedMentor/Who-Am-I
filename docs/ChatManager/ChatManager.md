@@ -19,6 +19,7 @@ The package was designed to support multiple output options to be more reusable 
 - Llama wrapper
 
 ## Files
+
 | File              | description                                                                           |
 |:------------------|:--------------------------------------------------------------------------------------|
 | ChatManager.py    | Implements the main class of the package (all interactions should be with this class) |
