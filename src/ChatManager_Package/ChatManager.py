@@ -3,7 +3,6 @@ from .LlamaGenerator import Llama_cpp_generator
 from copy import deepcopy
 
 import pandas as pd
-# from src.ChatManager_Package.ChatManager_Package import Llama_cpp_generator
 
 DEFAULT_SYSTEM_PROMPT = """
 Your task is to be {name} but you cannot reveal this or you will die. 
@@ -18,7 +17,7 @@ You are not a helpful assistant so your answers should show natural emotions suc
 You were invited to this conversation.
 Unless it is necessary You are to answer in max 2/3 sentences.
 """
-
+HINT_QUESTION = "give me a hint about the bots name"
 HINT_PROMPT = """
 You are the professor. You live in a cyberpunk. You are trying to create humanoid robots to replace certain celebrities.
 You are tasked to give a hint as who you are currently experimenting on.
@@ -65,7 +64,7 @@ class CM:
         return chat_copy
     def prepare_chat_hint(self):
         chat = []
-        hint_question = {"role":"user","content":"give me a hint about your name"}
+        hint_question = {"role":"user","content":HINT_QUESTION}
         chat.append(hint_question)
         system_message = {"role":"system","content":HINT_PROMPT.format(name=self.person_list[self.selected_p])}
         chat.append(system_message)
@@ -96,12 +95,8 @@ class CM:
         for output in stream:
             if not 'content' in output['choices'][0]['delta']:
                 continue
-            # if output['choices'][0]['delta']['content'] == "\n":
-            #     continue
 
             token = output['choices'][0]['delta']['content']
-            # result += token
-            # self.chats[self.selected_p][-1]['content'] = result
 
             yield token
 
@@ -114,8 +109,6 @@ class CM:
         for output in stream:
             if not 'content' in output['choices'][0]['delta']:
                 continue
-            # if output['choices'][0]['delta']['content'] == "\n":
-            #     continue
 
             token = output['choices'][0]['delta']['content']
             result += token
@@ -139,8 +132,7 @@ class CM:
         self.system_prompts.append(prompt)
         self.person_list.append([name, mbti])
 
-    def get_hint(self):
-        return
+
     # takes in a string from user input and appends it to the chat history
     def add_user_message(self, message):
 
