@@ -42,7 +42,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 ### Tools used
 The project uses Llama2 at its core. The API we built around the model uses llama-cpp-python as it had the best crossplatform hardware utilisation. It is designed in a manner where we could use bindings to different models to run the application. We also found that running larger than 7B parameter models on local machines with 8GB RAM is not viable. After some testing we found that the 7B 4_K_M quantised model has the best performance and doesnt run out of RAM.
 ## Installation
-After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/QuantFactory/Meta-Llama-3-8B-GGUF/blob/main/Meta-Llama-3-8B.Q4_K_M.gguf
+After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf?download=true
 
 After installing requirements, change the config file in  `~/.streamlit/config.toml.` directory.
 
