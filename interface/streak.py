@@ -108,15 +108,15 @@ def streak():
 
 
     def rerun_level():
-        del st.session_state['selected_option']
+        del st.session_state['selected_option_streak']
         st.session_state.current_lvl+=1
         st.session_state.streak += 1
         score = (st.session_state.tries + 1) * 10
         st.session_state.score2 += score
         st.empty()
         st.session_state.data = update_scoreboard(score, st.session_state.data)
-        st.session_state.lvl_data = get_data()
-        chosenBot, chosenBotMbti, mbtis = st.session_state.lvl_data
+        st.session_state.lvl_data_streak = get_data()
+        chosenBot, chosenBotMbti, mbtis = st.session_state.lvl_data_streak
         cm.reset(BOTS)
         cm.add_defaulted_system_prompt(chosenBot)
 
@@ -125,6 +125,23 @@ def streak():
         else:
             st.session_state.tries = 5
         st.rerun()
+    def reset_level():
+        del st.session_state['selected_option_streak']
+        st.session_state.current_lvl=1
+        st.session_state.streak = 0
+        st.session_state.score2 = 0
+        st.session_state.score = 0
+        st.empty()
+        st.session_state.lvl_data_streak = get_data()
+        chosenBot, chosenBotMbti, mbtis = st.session_state.lvl_data_streak
+        cm.reset(BOTS)
+        cm.add_defaulted_system_prompt(chosenBot)
+        st.session_state.hints = 3
+        if st.session_state.current_lvl <= 25:
+            st.session_state.tries = 10 - (int(st.session_state.current_lvl/5))
+        else:
+            st.session_state.tries = 5
+
 
     def gameOverInfo():
         gameover = Modal(key="gameover", title="Game Over")
@@ -138,8 +155,7 @@ def streak():
             temp1, temp2, temp3, temp4 = st.columns([0.3, 1, 0.3,1], gap='small')
 
             with temp2:
-                if st.button("Try Again", type="primary"):
-                        pass
+                if st.button("Try Again", type="primary", on_click=reset_level): pass
 
             with temp4:
                 if st.button("Show Scoreboard", type="primary"):
@@ -153,7 +169,7 @@ def streak():
 
                         # w funkcji rerun level jest reset ustawien i trzeba dodac zarzadzanie levelami
                         with temp1:
-                            if st.button("Try Again", type="primary", on_click=rerun_level): pass
+                            if st.button("Try Again", type="primary", on_click=reset_level): pass
 
 
 
