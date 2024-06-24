@@ -162,9 +162,9 @@ def streak():
     if st.session_state.tries == 0:
         gameOverInfo()
 
-    if 'lvl_data' not in st.session_state:
-        st.session_state.lvl_data = get_data()
-    chosenBot, chosenBotMbti, mbtis = st.session_state.lvl_data
+    if 'lvl_data_streak' not in st.session_state:
+        st.session_state.lvl_data_streak = get_data()
+    chosenBot, chosenBotMbti, mbtis = st.session_state.lvl_data_streak
     print("TEST 2")
     print(chosenBot)
     print(len(st.session_state.botsStreakList))
@@ -251,17 +251,17 @@ def streak():
         with st.container(border=True, height=550):
             index = None
             options = []
-            if 'selected_option' in st.session_state:
-                index = st.session_state.selected_option[0]
+            if 'selected_option_streak' in st.session_state:
+                index = st.session_state.selected_option_streak[0]
             option = st.selectbox(
                 f"Try to Guess",
                 (shuffled_toguess),
                 index=index,
                 placeholder="Am I...",
                 key = f"bot{0+1}")
-            if 'selected_option' not in st.session_state:
+            if 'selected_option_streak' not in st.session_state:
                 temp = [None]
-                st.session_state.selected_option = temp
+                st.session_state.selected_option_streak = temp
 
             #if not option is None:
              #   st.session_state.selected_option[0] = shuffled_toguess.index(option)
