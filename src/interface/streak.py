@@ -226,15 +226,19 @@ def streak():
                 st.session_state.selected_option_streak = temp
             options.append(option)
         #finish game
+            st.write(f"Previous answer: {st.session_state.previous_bot}")
         if st.button("Next round", type="secondary", use_container_width=True):
             rightPick = False
             if options[0] == chosenBotMbti:
                 rightPick = True
-            #score and streak managment
-            #streak
+            # score and streak managment
+            # streak
             if rightPick == True:
+                st.session_state.previous_bot = chosenBot
                 print("Guessed correcly")
                 rerun_level()
-            #Wrong Answer
+            # Wrong Answer
             else:
-                gameOverInfo()
+                st.session_state.previous_bot = chosenBot
+                st.session_state.gamov = True
+                st.rerun()

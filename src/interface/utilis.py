@@ -2,6 +2,7 @@ import streamlit as st
 import time
 import pandas as pd
 
+
 def background():
     st.markdown(
         """
@@ -13,10 +14,10 @@ def background():
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            
+
         }
-        
-        
+
+
         </style>
         """,
         unsafe_allow_html=True
@@ -37,21 +38,26 @@ def container_bg():
             max-width: 80%
             margin: auto;
             margin-right:20px
+            margin-top:-50px
+
+
 
 
         }
 
          div[data-testid="stVerticalBlock"] > div:nth-child(n+4) > div:nth-child(-n+6){
-            display: inherit
             background-color: rgba(28, 28, 28, 0.9);
             border-radius: 15px;
             max-width: 80%
             margin: auto;
-            margin-right: 10px;
+                                    padding:20px;
 
-            padding:20px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top:5px;
+            padding-bottom:10px;
 
-
+            margin-top:-10px;
 
         }
 
@@ -79,6 +85,7 @@ def add_logo():
         unsafe_allow_html=True,
     )
 
+
 def remove_space():
     st.markdown("""
             <style>
@@ -93,10 +100,11 @@ def remove_space():
 
 
 def margin_top(px):
-    st.write(f'<div class="other" style="margin-top: {px}px;</div>',unsafe_allow_html=True)
+    st.write(f'<div class="other" style="margin-top: {px}px;</div>', unsafe_allow_html=True)
+
 
 def margin_bottom(px):
-    st.write(f'<div class="other" style="margin-bottom: {px}px;</div>',unsafe_allow_html=True)
+    st.write(f'<div class="other" style="margin-bottom: {px}px;</div>', unsafe_allow_html=True)
 
 
 def stream_data(idx):
@@ -114,6 +122,7 @@ def stream_data(idx):
         yield word + " "
         time.sleep(0.07)
 
+
 def stream_data2(idx):
     mbti_data = pd.read_json("src/data/mbti_data.json")
     mbti_data = pd.DataFrame(mbti_data)
@@ -125,6 +134,7 @@ def stream_data2(idx):
     for word in mbti_data.iloc[idx]['description'].split():
         yield word + " "
         time.sleep(0.07)
+
 
 def center_title():
     st.markdown(
@@ -138,12 +148,13 @@ def center_title():
         unsafe_allow_html=True
     )
 
-def github():
 
+def github():
     st.markdown('<a href="https://github.com/StainedMentor/Who-Am-I">'
                 '<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/github-mark-white.png?raw=true" '
                 'width="50" height="50"></a>',
                 unsafe_allow_html=True)
+
 
 def avatar(path):
     st.markdown(
@@ -163,6 +174,7 @@ def avatar(path):
                 f'<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/avatars/{path}.png?raw=true" '
                 'width="300" height="300" class="centered-image" ></a>',
                 unsafe_allow_html=True)
+
 
 def game_dsc():
     st.markdown("""
@@ -190,6 +202,7 @@ def game_dsc():
                 <br>
                 Have fun and enhance your skills in identifying personality types!
                 """, unsafe_allow_html=True)
+
 
 def streak_dsc():
     st.markdown("""
@@ -224,22 +237,63 @@ def streak_dsc():
                 Have fun and try to achieve the longest streak, enhancing your skills in identifying personality types!
                 """, unsafe_allow_html=True)
 
+
 def milosz():
     st.markdown(
         '<div class="justify">A hundred percent ISTP. Capable, but lazy. Responsible for connecting the database with the application, handling users, and the scoreboard. Created the Streak Challenge game mode.</div>',
         unsafe_allow_html=True)
+
 
 def aga():
     st.markdown(
         '<div class="justify">Creative INFJ, sometimes logical solutions will do as well. A cat lover with a passion for farming games. Responsible for developing the main mode with streaks, scoreboard, level progression, and the overall appearance of the application. Story creator.</div>',
         unsafe_allow_html=True)
 
+
 def oliwer():
     st.markdown(
         '<div class="justify">ENTJ. Average python enjoyer. Responsible for making the backend, prompt engineering, setting up documentation and managing git.</div>',
         unsafe_allow_html=True)
 
+
 def kuba():
     st.markdown(
         '<div class="justify">An assertive representative of the ENTP group, the chosen goal will be achieved one way or another. A fan of urban exploration and morning robes with coffee. Responsible for keeping the team in check as the group leader, ensuring the logic and coherence of the project, and generating the images used in the project.</div>',
         unsafe_allow_html=True)
+
+def custom_c():
+    st.markdown("""
+        <style>
+            .custom-container {
+           background-color: rgba(28, 28, 28, 0.9);
+            border-radius: 15px;
+            max-width: 80%
+            margin: auto;
+            margin-right: 10px;
+
+            padding:20px;
+
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+def center_modal():
+    st.markdown("""
+        <style>
+            .custom-modal {
+                position: fixed;
+                top: 30px;
+                left: 30px;
+                transform: translate(-30px, -30px);
+                z-index: 9999; /* Ensure modal is on top of other content */
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let modal = document.querySelector('.custom-modal');
+                if (modal) {
+                    modal.classList.add('element-container'); // Ensure Streamlit assigns the correct class
+                }
+            });
+        </script>
+    """, unsafe_allow_html=True)

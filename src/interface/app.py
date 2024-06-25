@@ -12,7 +12,7 @@ def main():
     utilis.background()
 
     utilis.container_bg()
-
+    # utilis.custom_c()
     # Session state data initialized on app start
 
     if 'username' not in st.session_state:
@@ -93,6 +93,9 @@ def main():
 
     if 'tutorial_streak' not in st.session_state:
         st.session_state.tutorial_streak = False
+
+    if 'previous_bot' not in st.session_state:
+        st.session_state.previous_bot = ""
 
     def login():
 

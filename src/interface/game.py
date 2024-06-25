@@ -92,7 +92,7 @@ def game():
         st.session_state.score -= score
 
 
-    BOTS = bots_num()
+    BOTS = 5
     ACTIVE_BOT = 1
 
     if 'lvl_data' not in st.session_state:
@@ -108,7 +108,6 @@ def game():
 
     if st.session_state.curr_lvl==1:
         add_names(names[0:BOTS])
-
 
 
 
@@ -169,29 +168,32 @@ def game():
                     st.write(f"selected bot: {cm.selected_p+1}")
                     st.write(cm.get_hint_stream())
 
+        utilis.custom_c()
+        # with st.container(border=True, height=550):
+        st.markdown('<div class="custom-container">', unsafe_allow_html=True)
 
-        with st.container(border=True, height=550):
-            options = []
-            for bot in range(BOTS):
-                #print(bot)
-                index = None
-                if 'selected_option' in st.session_state:
-                    index = st.session_state.selected_option[bot]
-                option = st.selectbox(
-                    f"Bot {bot+1}",
-                    (shuffled_mbtis),
-                    index=index,
-                    placeholder="Am I...",
-                    key = f"bot{bot+1}")
+        options = []
+        for bot in range(BOTS):
+            #print(bot)
+            index = None
+            if 'selected_option' in st.session_state:
+                index = st.session_state.selected_option[bot]
 
-                if 'selected_option' not in st.session_state:
-                    temp = [None]*BOTS
-                    st.session_state.selected_option = temp
+            option = st.selectbox(
+                f"Bot {bot+1}",
+                (shuffled_mbtis),
+                index=index,
+                placeholder="Am I...",
+                key = f"bot{bot+1}")
 
-                if not option is None:
-                    st.session_state.selected_option[bot] = shuffled_mbtis.index(option)
-                options.append(option)
+            if 'selected_option' not in st.session_state:
+                temp = [None]*BOTS
+                st.session_state.selected_option = temp
 
+            if not option is None:
+                st.session_state.selected_option[bot] = shuffled_mbtis.index(option)
+            options.append(option)
+        st.markdown('</div>', unsafe_allow_html=True)
 
         #finish game
         if st.button("Finish research", type="secondary", use_container_width=True):
@@ -222,14 +224,15 @@ def game():
             scoreboard = Modal(key="score",title="Scoreboard")
 
             with scoreboard.container():
+
                 st.write(f"Your score in this game was: {st.session_state.score2}")
                 all_scores = get_all_scores()
                 sorted_scores = all_scores.sort_values(by='score', ascending=False)
-                st.dataframe(sorted_scores, use_container_width=True)
+                st.dataframe(sorted_scores, width = 500)
 
                 temp1, temp2 = st.columns([0.3, 1], gap='small')
                 with temp1:
-                    if st.button("Next round", type="primary", on_click=rerun_level): pass
+                    if st.button("Next round", type="primary", on_click=rerun_level):pass
                 with temp2:
                     if st.button("Improve in this level", type="secondary",on_click=res_score(score)):pass
 
