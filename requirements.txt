@@ -1,3 +1,4 @@
 llama-cpp-python == 0.2.16
 pandas == 2.2.0
 streamlit == 1.31.0
+firebase-admin == 6.5.0
