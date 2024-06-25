@@ -103,7 +103,7 @@ def game():
     shuffled_mbtis = shuffle(mbtis)
 
     #containery
-    chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
+    chat, bots, guesses = st.columns([1.5,1.0, 0.8], gap="medium")
     cm = init_CM()
 
     if st.session_state.curr_lvl==1:

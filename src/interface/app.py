@@ -6,6 +6,7 @@ from firebase_admin import db, credentials
 
 def main():
     st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
+
     utilis.add_logo()
     # utilis.remove_space()
     utilis.background()
@@ -116,7 +117,7 @@ def main():
                     st.error("A user with this name exists, but you entered the wrong password")
 
     def start():
-        with st.container(border=True, height=600):
+        with st.container(border=True):
             img, start_b, lvls_b = st.columns([1, 0.9, 1])
 
             # nie wiem czemu tak ma byc ale wtedy dziala znikanie po wcisnieciu start
@@ -126,7 +127,7 @@ def main():
 
 
             elif st.session_state.start == 1:
-                st.write("Welcome to Who Am I?\n Tell me, what is your name?")
+                st.subheader("Welcome to Who Am I? Tell me, what is your name?")
 
                 username = st.text_input("Your name:", st.session_state.username)
                 st.session_state.username = username

@@ -14,34 +14,46 @@ def background():
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-        </style>
+      
         """,
         unsafe_allow_html=True
 
     )
+    # remove_space()
 
 
 def container_bg():
     st.markdown(
         """
         <style>
-    
+
          div[data-testid="stVerticalBlock"] > div{
+
             background-color: rgba(28, 28, 28, 0.7);
             border-radius: 15px;
             max-width: 80%
             margin: auto;
+            margin-right:20px
+
+
         }
 
          div[data-testid="stVerticalBlock"] > div:nth-child(n+4) > div:nth-child(-n+6){
+            display: inherit
             background-color: rgba(28, 28, 28, 0.7);
             border-radius: 15px;
             max-width: 80%
             margin: auto;
+            margin-right: 10px;
 
-            padding:20px
+            padding:20px;
+
+
+
         }
-    
+
+
+
         </style>
         """,
         unsafe_allow_html=True
