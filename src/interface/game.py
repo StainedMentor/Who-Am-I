@@ -6,7 +6,7 @@ from src.ChatManager_Package.ChatManager import CM
 
 
 from firebase_admin import db, credentials
-import utilis
+from . import utilis
 
 
 def tutorial():
