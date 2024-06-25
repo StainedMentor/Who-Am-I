@@ -25,6 +25,12 @@ if 'curr_lvl' not in st.session_state:
 
 
 def game():
+
+    if st.session_state.gamemode == 0:
+        print("Classic Gamemode")
+    else:
+        print("Streak Gamemode")
+
     @st.cache_data
     def bots_num():
         return st.session_state.level
@@ -54,7 +60,6 @@ def game():
     def add_names(names):
         for name in names:
             cm.add_defaulted_system_prompt(name)
-            print(names)
 
     @st.cache_data
     def shuffle(mbtis):
@@ -89,7 +94,7 @@ def game():
     names,mbtis = st.session_state.lvl_data
     shuffled_mbtis = shuffle(mbtis)
 
-    print(names, mbtis)
+    #print(names, mbtis)
 
     #containery
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
@@ -155,7 +160,7 @@ def game():
                 with img: st.image("assets/scientist.png", use_column_width=True)
                 with text:
                     #tutaj prmpty podpowiedzi dla wybranego bota
-                    print(names[cm.selected_p])
+                    #print(names[cm.selected_p])
                     st.write(f"selected bot: {cm.selected_p+1}")
                     st.write(cm.get_hint_stream())
 
@@ -163,6 +168,7 @@ def game():
         with st.container(border=True, height=550):
             options = []
             for bot in range(BOTS):
+                #print(bot)
                 index = None
                 if 'selected_option' in st.session_state:
                     index = st.session_state.selected_option[bot]

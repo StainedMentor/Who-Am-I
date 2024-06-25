@@ -1,13 +1,10 @@
 import streamlit as st
-from . import utilis, game, help, about
+from . import utilis, game, help, about, streak
 
 def main():
     st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
     utilis.add_logo()
     utilis.remove_space()
-    utilis.background()
-
-    utilis.container_bg()
 
     if 'username' not in st.session_state:
         st.session_state.username = ""
@@ -30,9 +27,12 @@ def main():
     if "level" not in st.session_state:
         st.session_state.level = 4
 
-    def start():
-        with st.container(border=True,height=600):
+    if "gamemode" not in st.session_state:
+        st.session_state.gamemode = None
 
+    def start():
+
+        with st.container(border=True,height=600):
             img, start_b, lvls_b = st.columns([1, 0.9, 1])
 
             #nie wiem czemu tak ma byc ale wtedy dziala znikanie po wcisnieciu start
@@ -99,8 +99,12 @@ def main():
                 if st.session_state.text >=24:
                     st.session_state.text = 23
                     messages.empty()
-                    st.session_state.window = "game"
-                    if messages.button("Start research", type="secondary"):
+
+                    if messages.button("Start classic research", type="secondary"):
+                        st.session_state.window = "game"
+                        st.rerun()
+                    if messages.button("Start streak game", type="secondary"):
+                        st.session_state.window = "streak"
                         st.rerun()
 
                 elif st.session_state.text <24:
@@ -111,21 +115,28 @@ def main():
 
 
     def manage():
-        if st.session_state.window == "game": game.game()
+        if st.session_state.window == "game":
+            st.session_state.gamemode = 0
+            game.game()
         elif st.session_state.window == "help" : help.help()
         elif st.session_state.window == "start": start()
         elif st.session_state.window == "about": about.about()
+        elif st.session_state.window == "streak":
+            st.session_state.gamemode = 1
+            streak.streak()
 
     with st.sidebar:
         utilis.margin_top(40)
         st.image("assets/scientist.png", use_column_width=True)
         utilis.margin_bottom(30)
 
-        b0 = st.button("Game", type="secondary", use_container_width=True)
+        b0 = st.button("Classic Game", type="secondary", use_container_width=True)
+        b5 = st.button("Streak challenge", type="secondary", use_container_width=True)
         b1 = st.button("Get help from Professor", type="secondary", use_container_width=True)
         b2 = st.button("Start again your research", type="secondary", use_container_width=True)
         b3 = st.button("Settings", type="secondary", use_container_width=True)
         b4 = st.button("About us", type="secondary", use_container_width=True)
+
 
 
     if b0:
@@ -136,4 +147,6 @@ def main():
         st.session_state.window = "start"
     elif b4:
         st.session_state.window = "about"
+    elif b5:
+        st.session_state.window = "streak"
     manage()
