@@ -5,24 +5,32 @@ import random
 from src.ChatManager_Package.ChatManager import CM
 
 
-
-#DATA
-if 'data' not in st.session_state:
-    st.session_state.data = pd.DataFrame({'username': [], 'score': []})
-
-if 'hints' not in st.session_state:
-    st.session_state.hints = 3
-
-if 'score' not in st.session_state:
-    st.session_state.score = 0
-
-if 'streak' not in st.session_state:
-    st.session_state.streak = 0
-
-if 'curr_lvl' not in st.session_state:
-    st.session_state.curr_lvl = 1
+from firebase_admin import db, credentials
+import utilis
 
 
+def tutorial():
+    # Custom CSS to center the title
+    st.markdown(
+        """
+        <style>
+        .centered-title {
+            text-align: center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    utilis.remove_space()
+    with st.container(border=True):
+        # Use the custom CSS class for centering
+        st.markdown("<h1 class='centered-title'>How to play Classic Mode?</h1>", unsafe_allow_html=True)
+        st.write("siema")
+        if st.button("Let's Play", type="primary", use_container_width=True):
+            st.session_state.window = "game"
+            st.session_state.tutorial_classic = True
+            st.rerun()
 
 def game():
 
@@ -65,12 +73,20 @@ def game():
     def shuffle(mbtis):
         return random.sample(mbtis, len(mbtis))
 
-
-    def update_scoreboard(score, df, user = st.session_state.username):
+    def update_scoreboard(score, df, user=st.session_state.username):
         new_data = {'username': [user], 'score': [score]}
         data = pd.DataFrame(new_data)
-        update = pd.concat([df,data],ignore_index=True)
+        update = pd.concat([df, data], ignore_index=True)
+        db.reference(f"/{user}/score_classic").set(str(st.session_state.score))
         return update
+
+    def get_all_scores():
+        users = db.reference("/").get()
+        data = []
+        for user, info in users.items():
+            if "score_classic" in info:
+                data.append({'username': user, 'score': float(info['score_classic'])})
+        return pd.DataFrame(data)
 
 
     def rerun_level():
@@ -79,9 +95,11 @@ def game():
         st.session_state.curr_lvl += 1
         st.session_state.lvl_data = get_data()
         names, mbtis = st.session_state.lvl_data
-        st.session_state.hints = 3
+        st.session_state.hints_classic = 3
         cm.reset(BOTS)
         add_names(names[0:BOTS])
+    def res_score(score):
+        st.session_state.score -= score
 
 
     BOTS = bots_num()
@@ -93,8 +111,6 @@ def game():
 
     names,mbtis = st.session_state.lvl_data
     shuffled_mbtis = shuffle(mbtis)
-
-    #print(names, mbtis)
 
     #containery
     chat, bots, guesses = st.columns([1.5,1, 0.8], gap="medium")
@@ -111,7 +127,7 @@ def game():
         temp1, temp2, temp3, temp4 = st.columns([1,1,1,1], gap="small")
         with temp1: st.write(f"name: {st.session_state.username}")
         with temp2: st.write(f"score: {st.session_state.score}")
-        with temp3: st.write(f"streak: {st.session_state.streak}")
+        with temp3: st.write(f"streak: {st.session_state.streak_classic}")
         with temp4: st.write(f"level: {st.session_state.curr_lvl}")
 
         #chats
@@ -145,22 +161,21 @@ def game():
 
     with bots:
         #avaible hints above bots img
-        st.write(f"hints: {st.session_state.hints}")
+        st.write(f"hints: {st.session_state.hints_classic}")
         with st.container(border=True, height=550):
             st.image("assets/temp.png", use_column_width=True)
 
 
     with guesses:
         #hints button and select boxes
-        if st.button("Call Professor", type="primary", use_container_width=True) and st.session_state.hints >0:
+        if st.button("Call Professor", type="primary", use_container_width=True) and st.session_state.hints_classic >0:
             help = Modal(key="help",title="Help")
-            st.session_state.hints-=1
+            st.session_state.hints_classic-=1
             with help.container():
                 img, text = st.columns([0.8,1.2], gap="large")
                 with img: st.image("assets/scientist.png", use_column_width=True)
                 with text:
                     #tutaj prmpty podpowiedzi dla wybranego bota
-                    #print(names[cm.selected_p])
                     st.write(f"selected bot: {cm.selected_p+1}")
                     st.write(cm.get_hint_stream())
 
@@ -202,29 +217,32 @@ def game():
 
             #streak
             if score == 100:
-                st.session_state.streak += 1
+                st.session_state.streak_classic += 1
 
             else:
-                st.session_state.streak = 0
+                st.session_state.streak_classic = 0
 
-            st.session_state.data = update_scoreboard(score, st.session_state.data)
+
+            recent = db.reference(f"/{st.session_state.username}/score_classic").get()
+            if float(recent)<st.session_state.score:
+                db.reference("/").update({f"{st.session_state.username}/score_classic": f"{st.session_state.score}"})
+
 
             #scoreboard display
             scoreboard = Modal(key="score",title="Scoreboard")
 
             with scoreboard.container():
-                sorted = st.session_state.data.sort_values(by='score', ascending=False)
-                st.dataframe(sorted, use_container_width=True)
+                st.write(f"Your score in this game was: {st.session_state.score2}")
+                all_scores = get_all_scores()
+                sorted_scores = all_scores.sort_values(by='score', ascending=False)
+                st.dataframe(sorted_scores, use_container_width=True)
 
-                temp1, temp2 = st.columns([0.3,1], gap='small')
-
-                #w funkcji rerun level jest reset ustawien i trzeba dodac zarzadzanie levelami
+                temp1, temp2 = st.columns([0.3, 1], gap='small')
                 with temp1:
-                    if st.button("Next round", type="primary", on_click=rerun_level):pass
-
-                #tutaj po prostu kontynuuje sie dany poziom zeby poprawic
+                    if st.button("Next round", type="primary", on_click=rerun_level): pass
                 with temp2:
-                    if st.button("Improve in this level", type="secondary"):pass
+                    if st.button("Improve in this level", type="secondary",on_click=res_score(score)):pass
+
 
 
 
