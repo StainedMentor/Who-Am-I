@@ -235,7 +235,9 @@ def aga():
         unsafe_allow_html=True)
 
 def oliwer():
-    pass
+    st.markdown(
+        '<div class="justify">ENTJ. Average python enjoyer. Responsible for making the backend, prompt engineering, setting up documentation and managing git.</div>',
+        unsafe_allow_html=True)
 
 def kuba():
     pass
