@@ -8,7 +8,7 @@ def background():
         <style>
 
         .stApp {
-            background-image: url("https://github.com/StainedMentor/Who-Am-I/blob/main/assets/tests/bg4a.png?raw=true");
+            background-image: url("https://github.com/StainedMentor/Who-Am-I/blob/main/assets/bg4a.png?raw=true");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -223,3 +223,19 @@ def streak_dsc():
                 <br>
                 Have fun and try to achieve the longest streak, enhancing your skills in identifying personality types!
                 """, unsafe_allow_html=True)
+
+def milosz():
+    st.markdown(
+        '<div class="justify">A hundred percent ISTP. Capable, but lazy. Responsible for connecting the database with the application, handling users, and the scoreboard. Created the Streak Challenge game mode.</div>',
+        unsafe_allow_html=True)
+
+def aga():
+    st.markdown(
+        '<div class="justify">Creative INFJ, sometimes logical solutions will do as well. A cat lover with a passion for farming games. Responsible for developing the main mode with streaks, scoreboard, level progression, and the overall appearance of the application. Story creator.</div>',
+        unsafe_allow_html=True)
+
+def oliwer():
+    pass
+
+def kuba():
+    pass

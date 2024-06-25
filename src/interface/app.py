@@ -134,6 +134,7 @@ def main():
 
                 if st.button("Meet Professor"):
                     st.session_state.start = 2
+                    st.rerun()
 
 
             elif st.session_state.start == 2:

@@ -153,7 +153,7 @@ def game():
         #avaible hints above bots img
         st.write(f"hints: {st.session_state.hints_classic}")
         with st.container(border=True, height=550):
-            st.image("assets/temp.png", use_column_width=True)
+            st.image("assets/humanoid.png", use_column_width=True)
 
 
     with guesses:
@@ -163,7 +163,7 @@ def game():
             st.session_state.hints_classic-=1
             with help.container():
                 img, text = st.columns([0.8,1.2], gap="large")
-                with img: st.image("assets/scientist.png", use_column_width=True)
+                with img: st.image("assets/humanoid.png", use_column_width=True)
                 with text:
                     #tutaj prmpty podpowiedzi dla wybranego bota
                     st.write(f"selected bot: {cm.selected_p+1}")
