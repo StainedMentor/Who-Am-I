@@ -7,7 +7,10 @@ from firebase_admin import db, credentials
 def main():
     st.set_page_config(page_title="Who am I?", layout="wide", initial_sidebar_state="collapsed")
     utilis.add_logo()
-    utilis.remove_space()
+    # utilis.remove_space()
+    utilis.background()
+
+    utilis.container_bg()
 
     # Session state data initialized on app start
 

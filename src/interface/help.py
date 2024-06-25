@@ -4,7 +4,6 @@ import pandas as pd
 
 
 def help():
-    utilis.remove_space()
 
     with st.container(border=True):
         #mbti database

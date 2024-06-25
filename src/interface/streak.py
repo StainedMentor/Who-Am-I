@@ -9,21 +9,12 @@ from . import utilis
 
 def tutorial():
     # Custom CSS to center the title
-    st.markdown(
-        """
-        <style>
-        .centered-title {
-            text-align: center;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
-    utilis.remove_space()
     with st.container(border=True):
         # Use the custom CSS class for centering
-        st.markdown("<h1 class='centered-title'>How to play Streak Challenge?</h1>", unsafe_allow_html=True)
+        st.markdown("""
+            <h1 style="text-align:center">How to play Streak Challenge?</h1>
+            """, unsafe_allow_html=True)
         st.write("siema")
         if st.button("Let's Play", type="primary", use_container_width=True):
             st.session_state.window = "streak"

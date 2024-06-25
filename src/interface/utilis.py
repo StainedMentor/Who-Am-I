@@ -8,13 +8,16 @@ def background():
         <style>
 
         .stApp {
-            background-image: url("https://github.com/StainedMentor/Who-Am-I/blob/main/assets/tests/bg1.jpg?raw=true");
-            background-size: 50%,50%
-            
+            background-image: url("https://github.com/StainedMentor/Who-Am-I/blob/main/assets/tests/bg4a.png?raw=true");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         </style>
         """,
         unsafe_allow_html=True
+
     )
 
 
@@ -24,18 +27,27 @@ def container_bg():
         <style>
     
          div[data-testid="stVerticalBlock"] > div{
-            background-color: #1c1c1c;
+            background-color: rgba(28, 28, 28, 0.7);
+            border-radius: 15px;
+            max-width: 80%
+            margin: auto;
+        }
+
+         div[data-testid="stVerticalBlock"] > div:nth-child(n+4) > div:nth-child(-n+6){
+            background-color: rgba(28, 28, 28, 0.7);
             border-radius: 15px;
             max-width: 80%
             margin: auto;
 
-
+            padding:20px
         }
-   
+    
         </style>
         """,
         unsafe_allow_html=True
+
     )
+
 
 
 
@@ -69,10 +81,10 @@ def remove_space():
 
 
 def margin_top(px):
-    st.write(f'<div style="margin-top: {px}px;</div>',unsafe_allow_html=True)
+    st.write(f'<div class="other" style="margin-top: {px}px;</div>',unsafe_allow_html=True)
 
 def margin_bottom(px):
-    st.write(f'<div style="margin-bottom: {px}px;</div>',unsafe_allow_html=True)
+    st.write(f'<div class="other" style="margin-bottom: {px}px;</div>',unsafe_allow_html=True)
 
 
 def stream_data(idx):
@@ -102,6 +114,17 @@ def stream_data2(idx):
         yield word + " "
         time.sleep(0.07)
 
+def center_title():
+    st.markdown(
+        """
+        <style>
+        .centered-title {
+            text-align: center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 def github():
 
