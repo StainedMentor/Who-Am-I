@@ -26,7 +26,31 @@ def tutorial():
     with st.container(border=True):
         # Use the custom CSS class for centering
         st.markdown("<h1 class='centered-title'>How to play Classic Mode?</h1>", unsafe_allow_html=True)
-        st.write("siema")
+        st.write("""
+                    Welcome to Classic Game mode! Your goal is to uncover the MBTI personality types of hidden characters, both fictional and real. Here’s a guide on how to play effectively:
+
+                    **Start the Game:**
+                    When you launch Classic Game mode, you will see a list of characters hidden behind avatars.
+
+                    **Communicating with Characters:**
+                    Click on any character to open a dialog window.
+                    Ask questions to get clues about their personality. Remember, characters will try to hide their true identity, so formulate your questions precisely.
+
+                    **Analyzing Responses:**
+                    Carefully analyze the characters' responses. Pay attention to details that may indicate their MBTI personality type.
+
+                    **Using Professor's Help:**
+                    If you feel stuck, you can ask the Professor for hints. Remember, you can only ask for help 3 times during a single game, so use this option wisely.
+
+                    **Choosing the Personality Type:**
+                    After gathering enough information, select the MBTI personality type that best fits the analyzed character.
+                    Depending on the chosen difficulty level, the number of available MBTI types may vary. Remember that personality types can repeat.
+
+                    **Game Objective:**
+                    Your main goal is to improve your skills in recognizing personality types. Through the game, you will learn to better understand different human characters, which can be useful both in everyday life and professionally.
+
+                    Have fun and enhance your skills in identifying personality types!
+                    """)
         if st.button("Let's Play", type="primary", use_container_width=True):
             st.session_state.window = "game"
             st.session_state.tutorial_classic = True

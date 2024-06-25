@@ -24,7 +24,37 @@ def tutorial():
     with st.container(border=True):
         # Use the custom CSS class for centering
         st.markdown("<h1 class='centered-title'>How to play Streak Challenge?</h1>", unsafe_allow_html=True)
-        st.write("siema")
+        st.write("""
+            Welcome to Streak Challenge mode! Your goal is to achieve the longest streak by correctly identifying the MBTI personality types of a single character. Here’s how to play:
+
+            **Start the Game:**
+            When you launch Streak Challenge mode, you will see one hidden character.
+
+            **Communicating with the Character:**
+            Click on the character to open a dialog window.
+            Ask questions to gather clues about their personality. Remember, the character will try to hide their true identity, so formulate your questions carefully.
+
+            **Message Limitation:**
+            You have a limited number of messages you can send at each stage. This number is dynamic and decreases every few stages, increasing the difficulty level.
+
+            **Analyzing Responses:**
+            Carefully analyze the character's responses. Look for details that may indicate their MBTI personality type.
+
+            **Using Professor's Help:**
+            If you get stuck, you can ask the Professor for hints. Remember, you can only ask for help 3 times during a single game, so use this option wisely.
+
+            **Choosing the Personality Type:**
+            After gathering enough information, select the MBTI personality type that best fits the analyzed character.
+            As you progress through the game, the number of available MBTI types in the selection window will increase, making the game more challenging.
+
+            **Increasing the Streak:**
+            After a correct answer, your streak will increase. The goal is to achieve the longest streak by continuously correctly identifying personality types.
+
+            **Game Objective:**
+            Your main goal is to improve your skills in recognizing personality types, which will help you better understand different human characters.
+
+            Have fun and try to achieve the longest streak, enhancing your skills in identifying personality types!
+            """)
         if st.button("Let's Play", type="primary", use_container_width=True):
             st.session_state.window = "streak"
             st.session_state.tutorial_streak = True

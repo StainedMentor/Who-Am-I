@@ -109,3 +109,22 @@ def github():
                 '<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/github-mark-white.png?raw=true" '
                 'width="50" height="50"></a>',
                 unsafe_allow_html=True)
+def avatar(path):
+    st.markdown(
+        """
+        <style>
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown('<a href="https://github.com/StainedMentor/Who-Am-I">'
+                f'<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/avatars/{path}.png?raw=true" '
+                'width="300" height="300" class="centered-image" ></a>',
+                unsafe_allow_html=True)
+
