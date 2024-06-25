@@ -3,7 +3,7 @@ from llama_cpp import Llama
 
 # This class takes care of loading the model, generating responses and filtering responses that give the person away.
 class Llama_cpp_generator:
-    # llama-2-7b-chat-Q4_K_M will be the default model used in the project. It's both effective and resource friendly.
+    # llama-3-8b-Instruct-Q4_K_M will be the default model used in the project. It's both effective and resource friendly.
     # ctx_length describes the number of tokens in the generation process h
     def __init__(self, ctx_length=8192, m_path="src/models/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf", n_gpu_layers=-1, n_batch=512):
         self.ctx_length = ctx_length
