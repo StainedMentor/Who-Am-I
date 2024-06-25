@@ -15,7 +15,7 @@ def tutorial():
         st.markdown("""
             <h1 style="text-align:center">How to play Streak Challenge?</h1>
             """, unsafe_allow_html=True)
-        st.write("siema")
+        utilis.streak_dsc()
         if st.button("Let's Play", type="primary", use_container_width=True):
             st.session_state.window = "streak"
             st.session_state.tutorial_streak = True

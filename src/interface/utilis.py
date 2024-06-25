@@ -13,8 +13,11 @@ def background():
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            
         }
-      
+        
+        
+        </style>
         """,
         unsafe_allow_html=True
 
@@ -59,9 +62,6 @@ def container_bg():
         unsafe_allow_html=True
 
     )
-
-
-
 
 
 def add_logo():
@@ -115,7 +115,7 @@ def stream_data(idx):
         time.sleep(0.07)
 
 def stream_data2(idx):
-    mbti_data = pd.read_json("mbti_data.json")
+    mbti_data = pd.read_json("src/data/mbti_data.json")
     mbti_data = pd.DataFrame(mbti_data)
 
     for word in mbti_data.iloc[idx]['type'].split():
@@ -144,3 +144,82 @@ def github():
                 '<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/github-mark-white.png?raw=true" '
                 'width="50" height="50"></a>',
                 unsafe_allow_html=True)
+
+def avatar(path):
+    st.markdown(
+        """
+        <style>
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown('<a href="https://github.com/StainedMentor/Who-Am-I">'
+                f'<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/avatars/{path}.png?raw=true" '
+                'width="300" height="300" class="centered-image" ></a>',
+                unsafe_allow_html=True)
+
+def game_dsc():
+    st.markdown("""
+                **<span style="font-size: 24px;">Welcome to Classic Game mode!</span>**<br> Your goal is to uncover the MBTI personality types of hidden characters, both fictional and real. Here’s a guide on how to play effectively:
+
+                **<span style="font-size: 24px;">Start the Game:</span>**<br>
+                When you launch Classic Game mode, you will see a list of characters hidden behind avatars.
+
+                **<span style="font-size: 24px;">Communicating with Characters:</span>**<br>
+                Click on any character to open a dialog window.
+                Ask questions to get clues about their personality. Remember, characters will try to hide their true identity, so formulate your questions precisely.
+
+                **<span style="font-size: 24px;">Analyzing Responses:</span>**<br>
+                Carefully analyze the characters' responses. Pay attention to details that may indicate their MBTI personality type.
+
+                **<span style="font-size: 24px;">Using Professor's Help:</span>**<br>
+                If you feel stuck, you can ask the Professor for hints. Remember, you can only ask for help 3 times during a single game, so use this option wisely.
+
+                **<span style="font-size: 24px;">Choosing the Personality Type:</span>**<br>
+                After gathering enough information, select the MBTI personality type that best fits the analyzed character.
+                Depending on the chosen difficulty level, the number of available MBTI types may vary. Remember that personality types can repeat.
+
+                **<span style="font-size: 24px;">Game Objective:</span>**<br>
+                Your main goal is to improve your skills in recognizing personality types. Through the game, you will learn to better understand different human characters, which can be useful both in everyday life and professionally.
+                <br>
+                Have fun and enhance your skills in identifying personality types!
+                """, unsafe_allow_html=True)
+
+def streak_dsc():
+    st.markdown("""
+                **<span style="font-size: 24px;">Welcome to Streak Challenge mode!</span>**<br> Your goal is to achieve the longest streak by correctly identifying the MBTI personality types of a single character. Here’s how to play:
+
+                **<span style="font-size: 24px;">Start the Game:</span>**<br>
+                When you launch Streak Challenge mode, you will see one hidden character.
+
+                **<span style="font-size: 24px;">Communicating with the Character:</span>**<br>
+                Click on the character to open a dialog window.
+                Ask questions to gather clues about their personality. Remember, the character will try to hide their true identity, so formulate your questions carefully.
+
+                **<span style="font-size: 24px;">Message Limitation:</span>**<br>
+                You have a limited number of messages you can send at each stage. This number is dynamic and decreases every few stages, increasing the difficulty level.
+
+                **<span style="font-size: 24px;">Analyzing Responses:</span>**<br>
+                Carefully analyze the character's responses. Look for details that may indicate their MBTI personality type.
+
+                **<span style="font-size: 24px;">Using Professor's Help:</span>**<br>
+                If you get stuck, you can ask the Professor for hints. Remember, you can only ask for help 3 times during a single game, so use this option wisely.
+
+                **<span style="font-size: 24px;">Choosing the Personality Type:</span>**<br>
+                After gathering enough information, select the MBTI personality type that best fits the analyzed character.
+                As you progress through the game, the number of available MBTI types in the selection window will increase, making the game more challenging.
+
+                **<span style="font-size: 24px;">Increasing the Streak:</span>**<br>
+                After a correct answer, your streak will increase. The goal is to achieve the longest streak by continuously correctly identifying personality types.
+
+                **<span style="font-size: 24px;">Game Objective:</span>**<br>
+                Your main goal is to improve your skills in recognizing personality types, which will help you better understand different human characters.
+                <br>
+                Have fun and try to achieve the longest streak, enhancing your skills in identifying personality types!
+                """, unsafe_allow_html=True)
