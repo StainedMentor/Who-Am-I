@@ -4,6 +4,7 @@ title: Game
 parent: Interface
 nav_order: 2
 ---
+
 ### Classic Mode Gameplay
 #### Code Structure
 The application is structured into two main parts: `tutorial()` and `game()`.
