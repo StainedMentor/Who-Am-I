@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Settings
+title: Streak
 parent: Interface
 nav_order: 4
 ---
