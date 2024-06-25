@@ -40,7 +40,7 @@ Who Am I is a game about scientist assistant journey in a robots' lab. The journ
 * P: Perceiving - This dimension represents how individuals approach structure and organization. Perceiving individuals prefer a flexible and spontaneous lifestyle, with a focus on adaptability and openness to new experiences 
 
 ### Tools used
-The project uses Llama2 at its core. The API we built around the model uses llama-cpp-python as it had the best crossplatform hardware utilisation. It is designed in a manner where we could use bindings to different models to run the application. We also found that running larger than 7B parameter models on local machines with 8GB RAM is not viable. After some testing we found that the 7B 4_K_M quantised model has the best performance and doesnt run out of RAM.
+The project uses Llama3 at its core. The API we built around the model uses llama-cpp-python as it had the best crossplatform hardware utilisation. It is designed in a manner where we could use bindings to different models to run the application. We also found that running larger than 8B parameter models on local machines with 8GB RAM is not viable. After some testing we found that the 8B 4_K_M quantised model has the best performance and doesnt run out of RAM.
 ## Installation
 After cloning the repository and installing requirement, download and add the model to the projects directory: https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf?download=true
 
@@ -53,17 +53,18 @@ set FORCE_CMAKE=1
 pip install llama-cpp-python --force-reinstall --upgrade --no-cache-dir
 ```
 If you are running the project outside of pycharm you might have to manually activate your default python venv to set the environment parameters.
-If there are further issues this guide should fix them. https://medium.com/@piyushbatra1999/installing-llama-cpp-python-with-nvidia-gpu-acceleration-on-windows-a-short-guide-0dfac475002d
+If there are further issues with text generation being slow please refer to this documentation: https://llama-cpp-python.readthedocs.io/en/latest/
 
-## Run graphical interface
+## Run Application
 After finishing the installation run in the projects directory this command:
 ```
-streamlit run interface/app.py
+streamlit run AppEntry.py
 ```
 This should open autmatically in your browser. If not it would display a link in the console
-## Run in console instructions 
-Note this has wrong import paths due to streamlit and would need to be changed in order to run
 
+WARNING 
+The current version uses firebase. The `cred.json` isn't located in this repository. 
+## Run in console instructions 
 After installing run **ConsoleChat.py**.
 This will start the backend and allow you to chat with 4 "different" bots.
 To switch between bots simply type an integer from 0 to 3. (Ommit any other charecters to switch)
