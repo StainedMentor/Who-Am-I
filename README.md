@@ -7,28 +7,38 @@
 * [Run in console instructions](#run-in-console-instructions)
   
 ## Description
-Who Am I is a game about scientist assistant journey in a robots' lab. The journey begins with a short story and selecting difficulty level, then all 16 MBTI types are introduced to us with hort description. Next, the game begins. We (scientist assistants) must match all bots to MBTI personalities. We do our research with talking to each bot, getting to know them, asking questions which may lead to personality traits connected to pecific MBTI type. The research is done when we match all bots with avaible MBTI types, then results from the scientist come.\
+Who Am I is a game about scientist assistant journey in a robots' lab. 
+The journey begins with a short story and selecting difficulty level, then all 16 MBTI types are introduced to us with hort description. 
+Next, the game begins. We (scientist assistants) must match all bots to MBTI personalities. 
+We do our research with talking to each bot, getting to know them, asking questions which may lead to personality traits connected to pecific MBTI type. 
+The research is done when we match all bots with avaible MBTI types, then results from the scientist come.
 
 ## The Game
 ### Start
+* The user is prompted to log in - this is used to track streak records.
 * User is introduced to the plot and MBTI types.
-* User can select one of 3 difficulty levels, each defines number of bots in gamplay - easy = 4, medium = 5, hard = 6.\
-  \
+* User can select one of 3 difficulty levels, each defines number of bots in gamplay - easy = 4, medium = 5, hard = 6.
+  
+
 ![start](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/select.png)
   
 ### Game
-* User can use sidebar window to choose page -> game, help, start, settings. Game is a page for gameplay, help contains short notes about MBTI types, start restarts the game and settings manipulates options in the game.
+* User can use sidebar window to choose page -> game, streak, help, start, about. Game is a page for gameplay, help contains short notes about MBTI types, start restarts the game and settings manipulates options in the game.
 * On the left column there is a chat for each of X bots.
 * On the center column there is a representation of our game show.
-* On the right column there are X selcectboxes with a list of couple MBTI types.
+* On the right column there are X selectboxes with a list of couple MBTI types.
 * User can talk to each bot by selecting specific button on the top of the left column. Bots mimic certain celebrity, they can not tell user who they are.
 * User chooses predicted MBTI type for each bot on the right column selectboxes.
 * After clicking "Finish research" button, user gets his results in %.\
   \
-![game](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/game.png)
+![game](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/github_game.png)
+
+### Streak Gamemode
+* The game has an alternative gamemode where the goal is to guess the personality type correctly in a row.
+* The score is based on how many times the user guess correctly.
   
 ### Help
-![help](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/help.png)
+![help](https://github.com/StainedMentor/Who-Am-I/blob/main/assets/github_help.png)
  
 * E: Extroversion - This dimension represents how individuals interact with the world. Extroverts tend to be outgoing, social, and energized by interactions with others.
 * N: Intuition - This dimension represents how individuals process information. Intuitive individuals tend to focus on patterns, possibilities, and abstract concepts rather than concrete details.
