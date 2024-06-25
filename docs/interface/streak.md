@@ -49,22 +49,6 @@ This function represents the core gameplay loop of the Streak Challenge mode. It
 - **Bots Section (bots)**: Displays hints and character images related to the game.
 - **Guesses Section (guesses)**: Allows users to select and submit their guesses for the character's MBTI type.
 
-## Installation and Usage
-
-To run the Streak Challenge game mode:
-
-### Requirements
-
-Ensure Python is installed along with required dependencies (`streamlit`, `pandas`, `firebase-admin`, `streamlit_modal`).
-
-### Setup
-
-1. Clone the repository containing the game code.
-2. Install dependencies using `pip install -r requirements.txt`.
-
-### Run Application
-
-Execute `streamlit run your_app_name.py` in your terminal to start the application locally.
 
 ## Additional Features
 
