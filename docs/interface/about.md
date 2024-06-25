@@ -40,9 +40,11 @@ This function is responsible for displaying the "Meet The Creators" page. It pro
         - **creat1**:
             - Displays the name "StainedMentor" with centered alignment.
             - Displays the avatar using `utilis.avatar("oliver_cyber")`.
+            - Provides a detailed description of StainedMentor's role and personality.
         - **creat2**:
             - Displays the name "Agkittens" with centered alignment.
             - Displays the avatar using `utilis.avatar("aga_cyber")`.
+            - Provides a detailed description of Agkittens's role and personality.
         - **creat3**:
             - Displays the name "Marlon1385" with centered alignment.
             - Displays the avatar using `utilis.avatar("milosz_cyber")`.
@@ -50,6 +52,7 @@ This function is responsible for displaying the "Meet The Creators" page. It pro
         - **creat4**:
             - Displays the name "SamePinchy" with centered alignment.
             - Displays the avatar using `utilis.avatar("kuba_cyber")`.
+            - Provides a detailed description of SamePinchy's role and personality.
 
 #### Installation and Usage
 To run the "Meet The Creators" page:
