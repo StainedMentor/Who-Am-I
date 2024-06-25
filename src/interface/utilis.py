@@ -240,4 +240,6 @@ def oliwer():
         unsafe_allow_html=True)
 
 def kuba():
-    pass
+    st.markdown(
+        '<div class="justify">An assertive representative of the ENTP group, the chosen goal will be achieved one way or another. A fan of urban exploration and morning robes with coffee. Responsible for keeping the team in check as the group leader, ensuring the logic and coherence of the project, and generating the images used in the project.</div>',
+        unsafe_allow_html=True)
