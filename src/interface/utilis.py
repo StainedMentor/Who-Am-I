@@ -32,7 +32,7 @@ def container_bg():
 
          div[data-testid="stVerticalBlock"] > div{
 
-            background-color: rgba(28, 28, 28, 0.7);
+            background-color: rgba(28, 28, 28, 0.9);
             border-radius: 15px;
             max-width: 80%
             margin: auto;
@@ -43,7 +43,7 @@ def container_bg():
 
          div[data-testid="stVerticalBlock"] > div:nth-child(n+4) > div:nth-child(-n+6){
             display: inherit
-            background-color: rgba(28, 28, 28, 0.7);
+            background-color: rgba(28, 28, 28, 0.9);
             border-radius: 15px;
             max-width: 80%
             margin: auto;
