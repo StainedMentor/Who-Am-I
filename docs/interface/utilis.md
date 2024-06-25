@@ -36,10 +36,6 @@ The utilis.py contains all of custom css code for containers, background and mar
 - **Aga:** Creative INFJ involved in game mode development, scoreboard, level progression, and overall application design.
 - **Oliwer & Kuba:** Roles not specified in the readme.
 
-### Additional Information:
 
-For more details on gameplay, characters, and development insights, visit the [GitHub repository](https://github.com/StainedMentor/Who-Am-I).
 
----
 
-This readme provides an overview of the Streamlit cyberpunk personality test app, highlighting its features, contributors, and setup instructions for local deployment.
