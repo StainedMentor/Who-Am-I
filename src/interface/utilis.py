@@ -172,7 +172,7 @@ def avatar(path):
 
     st.markdown('<a href="https://github.com/StainedMentor/Who-Am-I">'
                 f'<img src="https://github.com/StainedMentor/Who-Am-I/blob/main/assets/avatars/{path}.png?raw=true" '
-                'width="300" height="300" class="centered-image" ></a>',
+                'width="200" height="200" class="centered-image" ></a>',
                 unsafe_allow_html=True)
 
 

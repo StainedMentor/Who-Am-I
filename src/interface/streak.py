@@ -127,7 +127,7 @@ def streak():
 
             all_scores = get_all_scores()
             sorted_scores = all_scores.sort_values(by='score', ascending=False)
-            st.dataframe(sorted_scores, use_container_width=True)
+            st.dataframe(sorted_scores, width=300)
 
             temp1, temp2, temp3, temp4, temp5 = st.columns([0.3, 1, 1,0.3,0.3], gap='small')
 
