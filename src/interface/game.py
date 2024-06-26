@@ -92,7 +92,7 @@ def game():
         st.session_state.score -= score
 
 
-    BOTS = 5
+    BOTS = bots_num()
     ACTIVE_BOT = 1
 
     if 'lvl_data' not in st.session_state:
