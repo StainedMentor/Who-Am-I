@@ -240,5 +240,5 @@ def streak():
             # Wrong Answer
             else:
                 st.session_state.previous_bot = chosenBot
-                st.session_state.gamov = True
-                st.rerun()
+                gameOverInfo()
+
