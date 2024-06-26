@@ -210,7 +210,7 @@ def streak():
                     st.write(cm.get_hint_stream())
 
 
-        with st.container(border=True, height=550):
+        with st.container(border=True, height=400):
             index = None
             options = []
             if 'selected_option_streak' in st.session_state:
@@ -241,4 +241,3 @@ def streak():
             else:
                 st.session_state.previous_bot = chosenBot
                 gameOverInfo()
-

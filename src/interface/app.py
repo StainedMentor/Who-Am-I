@@ -246,6 +246,8 @@ def main():
             st.session_state.window = "help"
         elif b2:
             st.session_state.window = "start"
+            st.session_state.text = 0
+            st.session_state.start = 0
         elif b3:
             st.session_state.window = "about"
         elif b4:
